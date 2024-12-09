@@ -31,7 +31,9 @@
                         <label for="header__search-container__input"></label>
                         <input id="header__search-container__input" type="text"
                             placeholder="Rechercher une recette, un ingrédient ..." name="search">
-                        <button id="header__search-container__button" type="submit">
+                        <button id="header__search-container__button"
+                            class="header__search-container__button--hover header__search-container__button--hover"
+                            type="submit">
                             <i class="fa-solid fa-magnifying-glass header__search-container__i"></i>
                         </button>
                     </form>
@@ -41,25 +43,25 @@
     </header>
     <main>
         <div>
-            <div class="dropdown">
-                <button class="dropbtn">Dropdown</button>
-                <div class="dropdown-content">
+            <div id="main__dropdown1" class="main__dropdown">
+                <button class="main__dropbtn">Ingrédients</button>
+                <div class="main__dropdown-content">
+                    <!--- <a href="#">Lait de coco</a> --->
+                    <a href="#">Jus de citron</a>
+                    <a href="#">Crème de coco</a>
+                </div>
+            </div>
+            <div id="main__dropdown2" class="main__dropdown">
+                <button class="main__dropbtn">Appareils</button>
+                <div class="main__dropdown-content">
                     <a href="#">Link 1</a>
                     <a href="#">Link 2</a>
                     <a href="#">Link 3</a>
                 </div>
             </div>
-            <div class="dropdown">
-                <button class="dropbtn">Dropdown</button>
-                <div class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn">Dropdown</button>
-                <div class="dropdown-content">
+            <div id="main__dropdown3" class="main__dropdown">
+                <button class="main__dropbtn">Ustensiles</button>
+                <div class="main__dropdown-content">
                     <a href="#">Link 1</a>
                     <a href="#">Link 2</a>
                     <a href="#">Link 3</a>
