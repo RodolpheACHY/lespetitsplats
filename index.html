@@ -12,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap"
         rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMg1tQ1N2h7l6j4z+X2B9F4mH3d7Wf1p3k2yK" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <script defer src="scripts/pages/index.js" type="module"></script>
     <title>Les Petits Plats</title>
@@ -34,7 +36,7 @@
                         <button id="header__search-container__button"
                             class="header__search-container__button--hover header__search-container__button--hover"
                             type="submit">
-                            <i class="fa-solid fa-magnifying-glass header__search-container__i"></i>
+                            <i class="fas fa-magnifying-glass header__search-container__i"></i>
                         </button>
                     </form>
                 </div>
@@ -42,31 +44,35 @@
         </div>
     </header>
     <main>
-        <div>
-            <div id="main__dropdown1" class="main__dropdown">
-                <button class="main__dropbtn">Ingrédients</button>
-                <div class="main__dropdown-content">
-                    <!--- <a href="#">Lait de coco</a> --->
-                    <a href="#">Jus de citron</a>
-                    <a href="#">Crème de coco</a>
+        <div class="main__containerDropdownsH2">
+            <div id="main__containerDropdowns">
+                <div id="main__dropdownIngredients" class="main__dropdown">
+                    <button class="main__dropbtn"><span>Ingrédients</span><span
+                            class="fa-solid fa-chevron-down main__dropdownIcon"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+                <div id="main__dropdownDevices" class="main__dropdown">
+                    <button class="main__dropbtn">Appareils <i class="fa fa-chevron-down"></i></button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+                <div id="main__dropdownUstensiles" class="main__dropdown">
+                    <button class="main__dropbtn">Ustensiles <i class="fa fa-chevron-down"></i></button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
                 </div>
             </div>
-            <div id="main__dropdown2" class="main__dropdown">
-                <button class="main__dropbtn">Appareils</button>
-                <div class="main__dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </div>
-            <div id="main__dropdown3" class="main__dropdown">
-                <button class="main__dropbtn">Ustensiles</button>
-                <div class="main__dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </div>
+            <h2 class="main__h2">1500 recettes</h2>
         </div>
     </main>
 </body>
