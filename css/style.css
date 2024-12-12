@@ -84,7 +84,7 @@ body {
     color: #1B1B1B;
 }
 .header__search-container__i {
-    color : black;
+    color : #ffffff;
     font-size: 2em;
     width: 27px; /* Ajustez la largeur */
     height: 28px; /* Ajustez la hauteur */
@@ -93,7 +93,9 @@ body {
     background-repeat: no-repeat; /* Évite la répétition de l'image */
     display: inline-block; /* Permet d'utiliser des dimensions sur l'icône*/
 }
-
+.header__search-container__i:hover {
+    color : #000000
+}
 main {
     background-color: #EDEDED;
     padding-top: 20px;
@@ -119,6 +121,9 @@ main {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 .main__dropdown-content {
     display: none;
@@ -147,7 +152,4 @@ main {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-}
-.main__dropdownIcon {
-    z-index: 5;
 }
