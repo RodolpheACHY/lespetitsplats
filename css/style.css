@@ -167,7 +167,7 @@ main {
     margin-left: 100px;
     margin-right: 100px;
 }
-#recipe-card {
+.recipe-card {
     background: #FFF;
     border-radius: 21px;
     border-top-left-radius: 21px;
@@ -186,7 +186,7 @@ main {
     object-fit: cover;
     max-height: 80vh;
 }
-#pastil-yellow {
+.pastil-yellow {
     display: inline-flex;
     padding: 5px 15px;
     justify-content: center;
@@ -207,10 +207,10 @@ main {
       font-size: 15px;
       line-height: 1;
 }
-#container-card-content {
+.container-card-content {
     padding: 0px 25px;
 }
-#container-card-content h3 {
+.container-card-content h3 {
     color: #000;
     font-family: Anton;
     font-size: 18px;
@@ -220,7 +220,7 @@ main {
     margin-top: 32px;
     margin-bottom: 29px;
 }
-#container-card-content h4 {
+.container-card-content h4 {
     color: #7A7A7A;
     font-family: Manrope;
     font-size: 12px;
@@ -232,7 +232,7 @@ main {
     margin-top: 0px;
     margin-bottom: 15px;
 }
-#container-card-content p {
+.container-card-content p {
     color: #1B1B1B;
     font-family: Manrope;
     font-size: 14px;
@@ -241,7 +241,7 @@ main {
     line-height: normal;
     margin-bottom: 32px;
 }
-#container-ingredients {
+.container-ingredients {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
