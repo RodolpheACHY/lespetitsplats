@@ -47,7 +47,7 @@
                 <div id="main__dropdownIngredients" class="main__dropdown">
                     <button class="main__dropbtn"><span>Ingrédients</span><span
                             class="fa-solid fa-chevron-down main__dropdownIcon"></span></button>
-                    <ul class="dropdown-menu">
+                    <ul id="dropdownMenuIngredients" class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -55,7 +55,7 @@
                 </div>
                 <div id="main__dropdownDevices" class="main__dropdown">
                     <button class="main__dropbtn">Appareils <i class="fa fa-chevron-down"></i></button>
-                    <ul class="dropdown-menu">
+                    <ul id="dropdownMenuDevices" class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -63,7 +63,8 @@
                 </div>
                 <div id="main__dropdownUstensiles" class="main__dropdown">
                     <button class="main__dropbtn">Ustensiles <i class="fa fa-chevron-down"></i></button>
-                    <ul class="dropdown-menu">
+                    <ul id="dropdownMenuUstensiles" class="main__dropdownMenu-ul">
+                        <input type="text" id="searchInput" placeholder="Rechercher un ingrédient...">
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -71,6 +72,46 @@
                 </div>
             </div>
             <h2 class="main__h2">1500 recettes</h2>
+        </div>
+        <div id="card-container" tabindex="-1">
+            <div id="recipe-card">
+                <aside>
+                    <div id="pastil-yellow">
+                        <span class="main__pasil-time">10mn</span>
+                    </div>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/oatmeal.jpg" alt="Chai Oatmeal" />
+                </aside>
+                <article id="container-card-content">
+                    <h3>Limonade de coco</h3>
+                    <h4>Recette</h4>
+                    <p>Mettre les glaçons à votre goût dans le blender, Ajouter le lait la crème de coco, le jus de 2
+                        citrons et le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée.</p>
+                    <h4>Ingrédients</h4>
+                    <div id="container-ingredients">
+                        <div class="main__container-ingredientMesure">
+                            <h5>Lait de coco</h5>
+                            <h6>400ml</h6>
+                        </div>
+                        <div class="main__container-ingredientMesure">
+                            <h5>Jus de citron</h5>
+                            <h6>400ml</h6>
+                        </div>
+                        <div class="main__container-ingredientMesure">
+                            <h5>Crème de coco</h5>
+                            <h6>4 cuillères</h6>
+                        </div>
+                        <div class="main__container-ingredientMesure">
+                            <h5>Sucre</h5>
+                            <h6>20g</h6>
+                        </div>
+                        <div class="main__container-ingredientMesure">
+                            <h5>Glaçons</h5>
+                            <h6>2</h6>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
         </div>
     </main>
 </body>

@@ -153,3 +153,121 @@ main {
     font-weight: 400;
     line-height: normal;
 }
+#searchInput {
+    height: 36px;
+    border: 1px solid #7A7A7A;
+    background-color: #ffffff;
+}
+
+#card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px 70px;
+    margin-top: 58px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+#recipe-card {
+    background: #FFF;
+    border-radius: 21px;
+    border-top-left-radius: 21px;
+    border-top-right-radius: 21px;
+    box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
+    width: 380px;
+    flex-shrink: 0;
+    overflow: hidden;
+    position :relative
+}
+
+#card-container aside img {
+    width: 100%;
+    height: 253px;
+    flex-shrink: 0;
+    object-fit: cover;
+    max-height: 80vh;
+}
+#pastil-yellow {
+    display: inline-flex;
+    padding: 5px 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 14px;
+    background: #FFD15B;
+    position:absolute ;
+    top : 21px;
+    right: 22px ;
+  }
+  
+  .circle_flex {
+    display: flex;
+  }
+  
+  .circle_light{
+      font-size: 15px;
+      line-height: 1;
+}
+#container-card-content {
+    padding: 0px 25px;
+}
+#container-card-content h3 {
+    color: #000;
+    font-family: Anton;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 32px;
+    margin-bottom: 29px;
+}
+#container-card-content h4 {
+    color: #7A7A7A;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1.08px;
+    text-transform: uppercase;
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+#container-card-content p {
+    color: #1B1B1B;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 32px;
+}
+#container-ingredients {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 0px;
+    margin-bottom: 30px;
+}
+.main__container-ingredientMesure {
+    width: 50%;
+    height: 60px;
+}
+.main__container-ingredientMesure h5 {
+    color: #1B1B1B;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.main__container-ingredientMesure h6 {
+    color: #7A7A7A;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 0px;
+}
