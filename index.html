@@ -28,8 +28,9 @@
                     DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
                 <div id="header__search-container">
                     <form id="header__search-container__form" action="#" method="get">
+                        <span id="input-xmark-icon" class="fa-solid fa-xmark header__input-xmark-icon"></span>
                         <label for="header__search-container__input"></label>
-                        <input id="header__search-container__input" type="text"
+                        <input id="header__search-container__input" type="search"
                             placeholder="Rechercher une recette, un ingrédient ..." name="search">
                         <button id="header__search-container__button"
                             class="header__search-container__button--hover header__search-container__button--hover"
@@ -45,29 +46,44 @@
         <div class="main__containerDropdownsH2">
             <div id="main__containerDropdowns">
                 <div id="main__dropdownIngredients" class="main__dropdown">
-                    <button class="main__dropbtn"><span>Ingrédients</span><span
-                            class="fa-solid fa-chevron-down main__dropdownIcon"></span></button>
-                    <ul id="dropdownMenuIngredients" class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <button id="dropdownBtnIngredients" class="main__dropbtn"><span>Ingrédients</span><span
+                            class="fa-solid fa-chevron-down main__dropdownIcon"></span>
+                    </button>
+                    <ul id="dropdownMenuIngredients" class="main__dropdownMenu-ul">
+                        <label for="inputSearchIngredient" class="visually-hidden">Rechercher un ingrédient</label>
+                        <input type="search" id="inputSearchIngredient" name="inputSearchIngredient"
+                            class="main__dropdownSearchInput">
+                        <span class="fa-solid fa-magnifying-glass main__dropdown-magnifying-glass-icon"></span>
+                        <span class="fa-solid fa-xmark main__dropdown-xmark-icon"></span>
+                        <!-- <li><a class="main__dropdown-item" href="#">Action</a></li>
+                        <li><a class="main__dropdown-item" href="#">Another action</a></li>
+                        <li><a class="main__dropdown-item" href="#">Something else here</a></li> -->
                     </ul>
                 </div>
                 <div id="main__dropdownDevices" class="main__dropdown">
                     <button class="main__dropbtn">Appareils <i class="fa fa-chevron-down"></i></button>
-                    <ul id="dropdownMenuDevices" class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <ul id="dropdownMenuDevices" class="main__dropdownMenu-ul">
+                        <label for="inputSearchDevice" class="visually-hidden">Rechercher un appareil</label>
+                        <input type="search" id="inputSearchDevice" name="inputSearchDevice"
+                            class="main__dropdownSearchInput">
+                        <span class="fa-solid fa-magnifying-glass main__dropdown-magnifying-glass-icon"></span>
+                        <span class="fa-solid fa-xmark main__dropdown-xmark-icon"></span>
+                        <li><a class="main__dropdown-item" href="#">Action</a></li>
+                        <li><a class="main__dropdown-item" href="#">Another action</a></li>
+                        <li><a class="main__dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </div>
                 <div id="main__dropdownUstensiles" class="main__dropdown">
                     <button class="main__dropbtn">Ustensiles <i class="fa fa-chevron-down"></i></button>
                     <ul id="dropdownMenuUstensiles" class="main__dropdownMenu-ul">
-                        <input type="text" id="searchInput" placeholder="Rechercher un ingrédient...">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <label for="inputSearchUstensile" class="visually-hidden">Rechercher un ustensile</label>
+                        <input type="search" id="inputSearchUstensile" name="inputSearchUstensile"
+                            class="main__dropdownSearchInput">
+                        <span class="fa-solid fa-magnifying-glass main__dropdown-magnifying-glass-icon"></span>
+                        <span class="fa-solid fa-xmark main__dropdown-xmark-icon"></span>
+                        <li><a class="main__dropdown-item" href="#">Action</a></li>
+                        <li><a class="main__dropdown-item" href="#">Another action</a></li>
+                        <li><a class="main__dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </div>
             </div>

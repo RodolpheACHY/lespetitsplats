@@ -1,28 +1,6 @@
 import { getRecipes } from "../models/index.js";
 
-/* global photographerTemplate */
-/* async function getRecipes() {
-        const response = await fetch("./data/recipes.js")
-        .then(datas => {
-            console.log(datas)
-        return ({
-            datas})
-        })  
-    }
-    async function displayData(datas) {
-        const photographersSection = document.querySelector(".photographer_section");
-        datas.photographers.forEach((photographer) => {
-            const photographerModel = photographerTemplate(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);
-        });
-    } */
-
-async function init() {
-  // Récupère les datas des photographes
-  //const { datas } = await getPhotographers();
-  //displayData(datas);
-  const recipes = getRecipes();
+function displayRecipes(recipes){
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
 
@@ -72,4 +50,70 @@ async function init() {
   });
 }
 
-init();
+
+
+function handleSearch(recipes) { 
+    const searchInput = document.getElementById("header__search-container__input"); 
+    searchInput.addEventListener("input", function () { 
+        const query = searchInput.value.trim().toLowerCase(); 
+        if (query.length >= 3) { 
+            const filteredRecipes = recipes.filter(recipe => 
+                recipe.name.toLowerCase().includes(query) || 
+                recipe.description.toLowerCase().includes(query) || 
+                recipe.ingredients.some(ingredient => 
+                    ingredient.ingredient.toLowerCase().includes(query) 
+                ) 
+            ); 
+            displayRecipes(filteredRecipes); 
+        } else { 
+            displayRecipes(recipes); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères 
+        } 
+    }); 
+}
+
+function clearInput() {
+    const searchInput = document.getElementById('header__search-container__input'); 
+    const clearIcon = document.getElementById('input-xmark-icon'); // Ajout de l'événement de clic à l'icône 
+        clearIcon.addEventListener('click', function() { 
+            console.log("click");
+            console.log(clearIcon);
+            searchInput.value = ' '; // Vider l'input 
+        });
+}
+clearInput();
+
+/*
+ function displayIngredients(recipe) { 
+    const ingredientsList = document.getElementById('dropdownMenuIngredients'); // Vider la liste actuelle 
+    //ingredientsList.innerHTML = ""; // Ajouter les ingrédients à la liste 
+    // Vider les éléments dynamiques actuels avant d'ajouter de nouveaux 
+    Array.from(ingredientsList.querySelectorAll('li.dynamic')).forEach(li => li.remove());
+    console.log(recipe)
+    // Ajouter chaque ingrédient à la liste sous les éléments statiques
+    recipe.ingredients.forEach(ingredient => { 
+        const li = document.createElement('li'); 
+        li.classList.add('dynamic');
+        li.textContent = ingredient; 
+        ingredientsList.appendChild(li); 
+    }); 
+    
+    // Afficher le conteneur des ingrédients 
+    ingredientsList.style.display = 'block'; 
+} */
+
+// Ajouter un événement de clic au bouton 
+//document.getElementById('dropdownBtnIngredients').addEventListener('click', displayIngredients());
+
+
+async function init() {
+   // displayIngredients()
+  // Récupère les datas des recettes
+  const recipes = getRecipes();
+  // affiche les recettes
+  displayRecipes(recipes);
+  handleSearch(recipes);
+  clearInput();
+}
+
+//init();
+document.addEventListener('DOMContentLoaded', init);
