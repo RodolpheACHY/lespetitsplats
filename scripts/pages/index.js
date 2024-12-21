@@ -33,10 +33,13 @@ function displayRecipes(recipes){
                     <div class="container-ingredients">
                     `;
       recipe.ingredients.forEach(function (ingredient) {
+        const recipeIngredient = ingredient.ingredient || '';
+        const recipeQuantity = ingredient.quantity || '';
+        const recipeUnit = ingredient.unit || '';
         let htmlIngredients = `
             <div class="main__container-ingredientMesure">
-                            <h5>${ingredient.ingredient}</h5>
-                            <h6>${ingredient.quantity} ${ingredient.unit}</h6>
+                            <h5>${recipeIngredient}</h5>
+                            <h6>${recipeQuantity} ${recipeUnit}</h6>
                         </div>
         `;
         htmlIngredient += htmlIngredients;
