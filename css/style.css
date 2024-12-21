@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    margin: 0;
 }
 
 body {
@@ -8,9 +9,9 @@ body {
 }
 
 #header {
-    background-image: url('/assets/lampos-aritonang-24gR_9lCdes-unsplash_1.png');
+    /*background-image: url('/assets/lampos-aritonang-24gR_9lCdes-unsplash_1.png');
     background-size: cover;
-    background-position: center;
+    background-position: center;*/
     height: 760px ;
     display: flex;
     justify-content: center;
