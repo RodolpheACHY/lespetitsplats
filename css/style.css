@@ -152,9 +152,9 @@ main {
     padding-right: 16px;
     padding-left: 16px;
 }
-.main__dropbtn.no-radius { 
-    border-bottom-right-radius: 0px ; /* Annule le border-radius */ 
-    border-bottom-left-radius: 0px 
+.main__dropbtn.show { 
+    border-bottom-right-radius: 0px ;
+    border-bottom-left-radius: 0px;
 }
 .main__dropdownIcon {
     -webkit-transition: all 0.4s ease;
@@ -235,8 +235,11 @@ main {
     padding-left: 16px;
     margin-top: 0px;
     overflow: scroll;
-    /*display: none; /* Par défaut, caché */
-    position : relative;
+    display: none; /* Par défaut, caché */
+    position : absolute;
+    width: 195px;
+    height: 300px;
+    z-index: 2;
 }
 .main__dropdownMenu-ul.show {
     display: block;
