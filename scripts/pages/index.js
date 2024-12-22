@@ -72,6 +72,34 @@ function handleSearch(recipes) {
     }); 
 }
 
+function handleSearchListIngredients(recipes) { 
+    const searchInputListIngredients = document.getElementById("inputSearchIngredient"); 
+    searchInputListIngredients.addEventListener("input", function () { 
+        const query = searchInputListIngredients.value.trim().toLowerCase(); 
+        // Créer un ensemble pour stocker tous les ingrédients
+        const allIngredients = new Set();
+        // Parcourir chaque recette pour récupérer tous les ingrédients
+        recipes.forEach(recipe => {
+            recipe.ingredients.forEach(ingredient => { 
+                allIngredients.add(ingredient.ingredient.toLowerCase());
+            }); 
+        });
+        // Filtrer les ingrédients en fonction de la requête
+        const filteredIngredients = Array.from(allIngredients).filter(ingredient => 
+            ingredient.includes(query) // Vérifie si l'ingrédient contient la requête
+        );
+        // Afficher les ingrédients filtrés ou tous les ingrédients si moins de 3 caractères
+        const ingredientsList = document.getElementById('dropdownMenuIngredients'); 
+        // Vider les éléments dynamiques actuels avant d'ajouter de nouveaux 
+        Array.from(ingredientsList.querySelectorAll('li.dynamic')).forEach(li => li.remove());
+        if (query.length >= 3) { 
+            displayIngredients(filteredIngredients); 
+        } else { 
+            displayIngredients(Array.from(allIngredients)); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères 
+        } 
+    }); 
+}
+
 function clearInput() {
     const searchInput = document.getElementById('header__search-container__input'); 
     const clearIcon = document.getElementById('input-xmark-icon'); // Ajout de l'événement de clic à l'icône 
@@ -105,10 +133,7 @@ function displayIngredients(recipes) {
         li.textContent = ingredient; 
         ingredientsList.appendChild(li); 
     })
-    
-    // Afficher le conteneur des ingrédients 
-    //ingredientsList.style.display = 'block'; 
-} 
+}   
 
 function toggleIngredientsList(recipes) {
     const dropdownMenu = document.getElementById('dropdownMenuIngredients');
@@ -199,6 +224,7 @@ function init() {
     displayAppliances(recipes);
     displayUstensiles(recipes);
     handleSearch(recipes);
+    handleSearchListIngredients(recipes);
     clearInput();
 }
 
