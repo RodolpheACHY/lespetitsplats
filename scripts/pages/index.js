@@ -82,6 +82,9 @@ function clearInput() {
         });
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
 
 function displayIngredients(recipes) { 
     const ingredientsList = document.getElementById('dropdownMenuIngredients'); 
@@ -92,11 +95,11 @@ function displayIngredients(recipes) {
     // Ajouter chaque ingrédient à la liste sous les éléments statiques
     recipes.forEach(recipe => {
         recipe.ingredients.forEach(ingredient => { 
-            allIngredients.add(ingredient.ingredient);
+            allIngredients.add(capitalizeFirstLetter(ingredient.ingredient));
         }); 
     });
 
-    allIngredients.forEach(ingredient => {
+    Array.from(allIngredients).sort().forEach(ingredient => {
         const li = document.createElement('li'); 
         li.classList.add('dynamic');
         li.textContent = ingredient; 
@@ -122,10 +125,10 @@ function displayAppliances(recipes) {
     const allAppliances = new Set();
     // Ajouter chaque ingrédient à la liste sous les éléments statiques
     recipes.forEach(recipe => {
-            allAppliances.add(recipe.appliance);
+            allAppliances.add(capitalizeFirstLetter(recipe.appliance));
     });
 
-    allAppliances.forEach(appliance => {
+    Array.from(allAppliances).sort().forEach(appliance => {
         const li = document.createElement('li'); 
         li.classList.add('dynamic');
         li.textContent = appliance; 
@@ -149,11 +152,11 @@ function displayUstensiles(recipes) {
     // Ajouter chaque ingrédient à la liste sous les éléments statiques
     recipes.forEach(recipe => {
         recipe.ustensils.forEach(ustensil => { 
-            allUstensiles.add(ustensil);
+            allUstensiles.add(capitalizeFirstLetter(ustensil));
         });
     });
 
-    allUstensiles.forEach(ustensil => {
+    Array.from(allUstensiles).sort().forEach(ustensil => {
         const li = document.createElement('li'); 
         li.classList.add('dynamic');
         li.textContent = ustensil; 
@@ -168,6 +171,12 @@ function toggleUstensilesList() {
     dropdownBtnUstensiles.classList.toggle('show');
 }
 
+// Fonction pour pivoter l'icône chevron associée au bouton cliqué 
+function toggleRotate(event) { 
+    const icon = event.currentTarget.querySelector('.main__dropdownIcon'); 
+    icon.classList.toggle('rotate');
+}
+
 function init() {
     // affichage des listes au clic
     const dropdownBtnIngredients = document.getElementById('dropdownBtnIngredients');
@@ -177,16 +186,20 @@ function init() {
     const dropdownBtnUstensiles = document.getElementById('dropdownBtnUstensiles');
     dropdownBtnUstensiles.addEventListener('click', toggleUstensilesList);
 
-  // Récupère les datas des recettes
-  const recipes = getRecipes();
-  // affiche les recettes
-  displayRecipes(recipes);
-  // affichage des listes
-  displayIngredients(recipes);
-  displayAppliances(recipes);
-  displayUstensiles(recipes);
-  handleSearch(recipes);
-  clearInput();
+    // rotation du chevron dans le bouton de liste 
+    const buttons = document.querySelectorAll('.main__dropbtn'); 
+    buttons.forEach(button => { button.addEventListener('click', toggleRotate); });
+
+    // Récupère les datas des recettes
+    const recipes = getRecipes();
+    // affiche les recettes
+    displayRecipes(recipes);
+    // affichage des listes
+    displayIngredients(recipes);
+    displayAppliances(recipes);
+    displayUstensiles(recipes);
+    handleSearch(recipes);
+    clearInput();
 }
 
 //init();
