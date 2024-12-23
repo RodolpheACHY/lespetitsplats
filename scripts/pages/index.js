@@ -1,7 +1,9 @@
 import { getRecipes } from "../models/index.js";
 
-let ingredientsList = [];
+let ingredientsList = []; // ce tableau va recevoir les ingredients cliqués pour filtrer les recettes 
+let appliancesList = [];   // ce tableau va recevoir les Appliances cliqués pour filtrer les recettes 
 const selectedIngredients = ["ananas"];
+const selectedAppliances = ["Blender"];
 
 function displayRecipes(recipes) {
   const cardContainer = document.getElementById("card-container");
@@ -77,42 +79,43 @@ function handleSearch(recipes) {
   });
 }
 
+// fonction qui affiche notre liste initiale d'ingrédients
+function initDropdownIngredient(recipes) {
+    // Créer un ensemble pour stocker tous les ingrédients
+    const allIngredients = new Set();
+    // Parcourir chaque recette pour récupérer tous les ingrédients
+    recipes.forEach((recipe) => {
+      recipe.ingredients.forEach((ingredient) => {
+        allIngredients.add(ingredient.ingredient.toLowerCase());
+      });
+    });
+    ingredientsList = Array.from(allIngredients);
+    displayFilteredIngredients(Array.from(allIngredients));
+}
+
 function handleSearchListIngredients(event) {
   event.preventDefault();
 
-  const searchInputListIngredients = document.getElementById(
-    "inputSearchIngredient"
-  );
-
+  const searchInputListIngredients = document.getElementById("inputSearchIngredient");
   const query = searchInputListIngredients.value.trim().toLowerCase();
 
   // Filtrer les ingrédients en fonction de la requête
-  const filteredIngredients = Array.from(ingredientsList).filter(
+  //const filteredIngredients = Array.from(ingredientsList).filter(        ingredientsList = Array.from(allIngredients); dc pkoi faire Array.from(ingredientsList)
+    const filteredIngredients = ingredientsList.filter(
     (ingredient) => ingredient.includes(query) // Vérifie si l'ingrédient contient la requête
   );
-  // Afficher les ingrédients filtrés ou tous les ingrédients si moins de 3 caractères
+  // On choisit notre élément qui va contenir la liste d'ingrédients filtrée
   const domIngredientsList = document.getElementById("dropdownMenuIngredients");
   // Vider les éléments dynamiques actuels avant d'ajouter de nouveaux
   Array.from(domIngredientsList.querySelectorAll("li.dynamic")).forEach((li) =>
     li.remove()
   );
-  return displayFilteredIngredients(Array.from(filteredIngredients)); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères
+  return displayFilteredIngredients(Array.from(filteredIngredients));
 }
 
-function initDropdownIngredient(recipes) {
-  // Créer un ensemble pour stocker tous les ingrédients
-  const allIngredients = new Set();
-  // Parcourir chaque recette pour récupérer tous les ingrédients
-  recipes.forEach((recipe) => {
-    recipe.ingredients.forEach((ingredient) => {
-      allIngredients.add(ingredient.ingredient.toLowerCase());
-    });
-  });
-  ingredientsList = Array.from(allIngredients);
-  displayFilteredIngredients(Array.from(allIngredients)); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères
-}
 
-const handleSearchIngredients = () => {
+
+/* const handleSearchIngredients = () => {
   const query = inputSearchIngredient.value.toLowerCase();
   const filteredIngredients = new Set();
 
@@ -127,7 +130,7 @@ const handleSearchIngredients = () => {
   });
 
   displayFilteredIngredients(Array.from(filteredIngredients));
-};
+}; */
 
 const displayFilteredIngredients = (ingredients) => {
   const ingredientsList = document.getElementById("dropdownMenuIngredients");
@@ -140,7 +143,8 @@ const displayFilteredIngredients = (ingredients) => {
   });
   ingredients.forEach((ingredient) => {
     if (!selectedIngredients.includes(ingredient)) {
-      createListItem(ingredient, ingredientsList);
+      const capitalizedIngredient = capitalizeFirstLetter(ingredient);
+      createListItem(capitalizedIngredient, ingredientsList);
     }
   });
 };
@@ -199,29 +203,91 @@ function toggleIngredientsList(recipes) {
   dropdownBtnIngredients.classList.toggle("show");
 }
 
-function displayAppliances(recipes) {
-  const appliancesList = document.getElementById("dropdownMenuDevices");
-  // Vider les éléments dynamiques actuels avant d'ajouter de nouveaux
-  Array.from(appliancesList.querySelectorAll("li.dynamic")).forEach((li) =>
-    li.remove()
-  );
-
-  const allAppliances = new Set();
-  // Ajouter chaque ingrédient à la liste sous les éléments statiques
-  recipes.forEach((recipe) => {
-    allAppliances.add(capitalizeFirstLetter(recipe.appliance));
-  });
-
-  Array.from(allAppliances)
-    .sort()
-    .forEach((appliance) => {
-      const li = document.createElement("li");
-      li.classList.add("dynamic");
-      li.textContent = appliance;
-      appliancesList.appendChild(li);
+// fonction qui affiche notre liste initiale d'ingrédients
+function initDropdownAppliances(recipes) {
+    // Créer un ensemble pour stocker tous les ingrédients
+    const allAppliances = new Set();
+    // Parcourir chaque recette pour récupérer tous les ingrédients
+    recipes.forEach((recipe) => {
+      recipe.appliance.forEach((appliance) => {
+        allAppliances.add(appliance.toLowerCase());
+      });
     });
+    appliancesList = Array.from(allAppliances);
+    displayFilteredAppliances(Array.from(allAppliances));
 }
 
+
+function handleSearchListAppliances(event) {
+    event.preventDefault();
+  
+    const searchInputListAppliances = document.getElementById("inputSearchDevice");
+    const query = searchInputListAppliances.value.trim().toLowerCase();
+  
+    // Filtrer les appareils en fonction de la requête
+       //const filteredAppliances= Array.from(appliancesList).filter(        //appliancesList = Array.from(allAppliances); dc pkoi faire Array.from(ingredientsList)
+      const filteredAppliances = appliancesList.filter(
+      (appliance) => appliance.includes(query) // Vérifie si l'ingrédient contient la requête
+    );
+    // On choisit notre élément qui va contenir la liste d'ingrédients filtrée
+    const domAppliancesList = document.getElementById("dropdownMenuDevices");
+    // Vider les éléments dynamiques actuels avant d'ajouter de nouveaux
+    Array.from(domAppliancesList.querySelectorAll("li.dynamic")).forEach((li) =>
+      li.remove()
+    );
+    return displayFilteredAppliances(Array.from(filteredAppliances));
+}
+
+const displayFilteredAppliances = (appliance) => {
+    const appliancesList = document.getElementById("dropdownMenuDevices");
+    Array.from(appliancesList.querySelectorAll("li.dynamic")).forEach((li) =>
+      li.remove()
+    );
+  
+    selectedAppliances.forEach((appliance) => {
+        // affichage en jaune
+      });
+      appliance.forEach((appliance) => {
+        if (!selectedAppliances.includes(appliance)) {
+          const capitalizedAppliance = capitalizeFirstLetter(appliance);
+          createListItem(capitalizedAppliance, appliancesList);
+        }
+      });
+    //appliance.sort().forEach((appliance) => {
+    //  createListItem(appliance, appliancesList);
+    //});
+};
+
+function displayAppliances(recipes) {
+    const appliancesList = document.getElementById("dropdownMenuDevices");
+    //const domAppliancesList = document.getElementById("dropdownMenuDevices");
+    // Vider les éléments dynamiques actuels avant d'ajouter de nouveaux
+    Array.from(appliancesList.querySelectorAll("li.dynamic")).forEach((li) =>
+    //Array.from(domAppliancesList.querySelectorAll("li.dynamic")).forEach((li) =>  
+      li.remove()
+    );
+  
+    const allAppliances = new Set();
+    // Ajouter chaque ingrédient à la liste sous les éléments statiques
+    recipes.forEach((recipe) => {
+      allAppliances.add(capitalizeFirstLetter(recipe.appliance));
+    });
+  
+   // Initialiser appliancesList ici  ajout moi
+    //appliancesList = Array.from(allAppliances);
+    //appliancesList = Array.from(allAppliances);
+    Array.from(allAppliances)
+      .sort()
+      .forEach((appliance) => {
+        createListItem(appliance, appliancesList)
+        /*const li = document.createElement("li");
+        li.classList.add("dynamic");
+        li.textContent = appliance;
+        //appliancesList.appendChild(li);*/
+      });
+  }
+
+  
 function toggleAppliancesList() {
   const dropdownMenu = document.getElementById("dropdownMenuDevices");
   const dropdownBtnDevices = document.getElementById("dropdownBtnDevices");
@@ -229,33 +295,11 @@ function toggleAppliancesList() {
   dropdownBtnDevices.classList.toggle("show");
 }
 
-const handleSearchAppliances = () => {
-  const query = inputS.value.toLowerCase();
-  const filteredIngredients = new Set();
 
-  const recipes = getRecipes();
 
-  recipes.forEach((recipe) => {
-    recipe.ingredients.forEach((ingredient) => {
-      if (ingredient.ingredient.toLowerCase().includes(query)) {
-        filteredIngredients.add(capitalizeFirstLetter(ingredient.ingredient));
-      }
-    });
-  });
 
-  displayFilteredIngredients(Array.from(filteredIngredients));
-};
 
-const displayFilteredAppliances = (ingredients) => {
-  const ingredientsList = document.getElementById("dropdownMenuIngredients");
-  Array.from(ingredientsList.querySelectorAll("li.dynamic")).forEach((li) =>
-    li.remove()
-  );
 
-  ingredients.sort().forEach((ingredient) => {
-    createListItem(ingredient, ingredientsList);
-  });
-};
 
 function displayUstensiles(recipes) {
   const ustensilesList = document.getElementById("dropdownMenuUstensiles");
@@ -322,6 +366,12 @@ function init() {
   );
   inputSearchIngredient.addEventListener("input", handleSearchListIngredients);
 
+  // gère le filtre des appareils affichés dans le dropdown
+  const inputSearchDevice = document.getElementById(
+    "inputSearchDevice"
+  );
+  inputSearchDevice.addEventListener("input", handleSearchListAppliances);
+
   // Récupère les datas des recettes
   const recipes = getRecipes();
 
@@ -335,6 +385,7 @@ function init() {
 
   handleSearch(recipes);
   initDropdownIngredient(recipes);
+  initDropdownAppliances(recipes);
   // handleSearchIngredients();
   clearInput();
 }
