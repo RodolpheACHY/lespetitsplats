@@ -1,12 +1,12 @@
 import { getRecipes } from "../models/index.js";
 
 let ingredientsList = []; // ce tableau va recevoir les ingredients cliqués pour filtrer les recettes 
-let appliancesList = [];
+let appliancesList = []; // ce tableau va recevoir les Appliances cliqués pour filtrer les recettes
 let ustensilesList = [];
-// ce tableau va recevoir les Appliances cliqués pour filtrer les recettes 
+ 
 const selectedIngredients = ["ananas"];
 const selectedAppliances = ["Blender"];
-const selectedUstensiles = [""];
+const selectedUstensiles = ["Bol"];
 function displayRecipes(recipes) {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
@@ -308,7 +308,6 @@ const displayFilteredUstensiles = (ustensiles) => {
     }
   });
 };
-
 
 function displayUstensiles(recipes) {
   const ustensilesList = document.getElementById("dropdownMenuUstensiles");

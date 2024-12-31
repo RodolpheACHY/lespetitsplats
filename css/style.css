@@ -218,6 +218,9 @@ main {
     flex-shrink: 0;
     border-radius: 2px;
     border: 1px solid #C6C6C6;
+    padding-left: 9px;
+    padding-right: 16px;
+    margin-left: 16px;
     margin-bottom: 24px;
     color: #7A7A7A;
     font-family: Manrope;
@@ -233,8 +236,8 @@ main {
     border-bottom-left-radius: 11px;
     background-color: #fff;
     padding-bottom: 15px;
-    padding-right: 16px;
-    padding-left: 16px;
+    padding-right: 0px;
+    padding-left: 0px;
     margin-top: 0px;
     overflow: scroll;
     display: none; /* Par défaut, caché */
@@ -284,7 +287,9 @@ main {
 }
 
 .main__dropdownMenu-ul li {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 #card-container {
@@ -399,3 +404,20 @@ main {
     line-height: normal;
     margin-top: 0px;
 }
+
+.dynamic {
+    /* padding: 10px;
+    margin: 5px 0; */
+    /*background-color: #ffffff;
+    /* border: 1px solid #ddd; */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding-top: 9px;
+    padding-bottom: 9px; 
+  }
+  
+  .dynamic:hover {
+    background-color: #FFD15B; /* Couleur de fond au survol */
+    color: #1B1B1B;           /* Couleur du texte au survol */
+    cursor: pointer;          /* Curseur clic */
+    opacity: 1;
+  }
