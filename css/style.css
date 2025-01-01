@@ -62,7 +62,6 @@ body {
     flex-shrink: 0;
     stroke-width: 1px;
     background-size: contain; 
-    pointer-events: none; /* Évite que l'icône interfère avec les clics */
     color: #7A7A7A;
     z-index: 10;
 }
@@ -271,7 +270,7 @@ main {
     flex-shrink: 0;
     stroke-width: 1px;
     background-size: contain; 
-    pointer-events: none; 
+    /* pointer-events: none; */
     color: #7A7A7A;
     cursor: pointer; 
 }
@@ -375,6 +374,8 @@ main {
     font-weight: 400;
     line-height: normal;
     margin-bottom: 32px;
+    max-height: 80px;
+    overflow: hidden;
 }
 .container-ingredients {
     display: flex;

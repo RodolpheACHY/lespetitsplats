@@ -7,12 +7,14 @@ let ustensilesList = [];
 const selectedIngredients = ["ananas"];
 const selectedAppliances = ["Blender"];
 const selectedUstensiles = ["Bol"];
+
+
 function displayRecipes(recipes) {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
 
-  const testEl = document.createElement("p");
-  testEl.textContent = "test :-)";
+  // const testEl = document.createElement("p");
+  // testEl.textContent = "test :-)";
   recipes.forEach(function (recipe) {
     let html = `
             <div class="recipe-card">
@@ -26,7 +28,6 @@ function displayRecipes(recipes) {
                     <h3>${recipe.name}</h3>
                     <h4>Recette</h4>
                     <p>${recipe.description}</p>
-                    ${testEl.outerHTML}
             `;
     let htmlIngredient = "";
     if (
@@ -57,6 +58,17 @@ function displayRecipes(recipes) {
             </div>`;
     cardContainer.insertAdjacentHTML("beforeend", html);
   });
+  console.log(recipes.length)
+  countRecipes(recipes);
+}
+
+function countRecipes(recipes) {
+
+// Sélectionner le h2 où le nombre sera affiché
+const recipeCountH2 = document.getElementById("recipeCountH2");
+
+// Afficher dynamiquement le nombre de recettes
+recipeCountH2.textContent = `${recipes.length} recettes`;
 }
 
 function handleSearch(recipes) {
@@ -198,19 +210,43 @@ function toggleDropdown(element) {
   }
 }
 
-function clearInput() {
-    const searchInput = document.getElementById(
-      "header__search-container__input"
-    );
-    const clearIcon = document.getElementById("input-xmark-icon"); // Ajout de l'événement de clic à l'icône
+function clearInput(searchId, clearIconId) {
+    const searchInput = document.getElementById(searchId);
+    const clearIcon = document.getElementById(clearIconId);
     clearIcon.addEventListener("click", function () {
       console.log("click");
       console.log(clearIcon);
       searchInput.value = ""; // Vider l'input
       searchInput.focus();
     });
-  }
+}
   
+/*
+function clearInputDropdown() {
+    const searchInputDropdown = document.querySelector(".main__dropdownSearchInput");
+    const dropdownXmarkIcon = document.querySelector(".main__dropdown-xmark-icon");
+    dropdownXmarkIcon.addEventListener("click", function () {
+        console.log("click");
+        console.log(dropdownXmarkIcon);
+        searchInputDropdown.value = ""; // Vider l'input
+        //searchInputDropdown.focus();
+    });
+} */
+
+    /*
+function clearInputDropdown() {
+    const SearchInputDropdown = document.querySelector(".main__dropdownSearchInput");
+    const AllDropdownXmarkIcon = document.querySelectorAll(".main__dropdown-xmark-icon");
+    AllDropdownXmarkIcon.forEach((button) => {
+        button.addEventListener("click", () => {
+            console.log("click");
+            console.log(button);
+            SearchInputDropdown.value = ""; // Vider l'input
+            SearchInputDropdown.focus();
+        });    
+    });
+} */
+
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   }
@@ -418,6 +454,7 @@ function init() {
 
   // affiche les recettes
   displayRecipes(recipes);
+  countRecipes();
 
   // affichage des listes
   initDropdownIngredient(recipes);
@@ -430,7 +467,14 @@ function init() {
   handleSearch(recipes);
   
   // handleSearchIngredients();
-  clearInput();
+  //clearInput();
+  //clearInputDropdown();
+
+  // clear inputs
+  clearInput("header__search-container__input", "input-xmark-icon");
+  clearInput("inputSearchIngredient", "iconXmarkInputIngredients");
+  clearInput("inputSearchDevice", "iconXmarkInputDevices");
+  clearInput("inputSearchUstensile", "iconXmarkInputUstensiles");
 }
 
 //init();
