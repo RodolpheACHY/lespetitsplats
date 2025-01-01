@@ -166,7 +166,36 @@ function createListItem(text, parentElement) {
   const li = document.createElement("li");
   li.classList.add("dynamic");
   li.textContent = text;
+  li.addEventListener("click", () => {
+    addTag(text);
+    toggleDropdown(li);
+    li.remove();
+  })
   parentElement.appendChild(li);
+}
+
+function addTag(text) {
+  const tagsContainer = document.getElementById("tags-container");
+  const tag = document.createElement("span");
+  tag.textContent = text;
+  tag.classList.add("main__tag");
+  tagsContainer.appendChild(tag);
+}
+
+function toggleDropdown(element) {
+  const parentUl = element.closest('ul');
+  if (parentUl) {
+    parentUl.classList.toggle("show");
+
+    const dropdownContainer = parentUl.closest('.main__dropdown');
+    if (dropdownContainer) {
+      const associatedBtn = dropdownContainer.querySelector('button');
+      if (associatedBtn) {
+        associatedBtn.classList.toggle("show");
+        toggleRotate ({ currentTarget: associatedBtn });
+      }
+    }
+  }
 }
 
 function clearInput() {
@@ -177,7 +206,8 @@ function clearInput() {
     clearIcon.addEventListener("click", function () {
       console.log("click");
       console.log(clearIcon);
-      searchInput.value = " "; // Vider l'input
+      searchInput.value = ""; // Vider l'input
+      searchInput.focus();
     });
   }
   

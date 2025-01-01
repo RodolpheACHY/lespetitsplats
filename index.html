@@ -51,9 +51,11 @@
                     </button>
                     <ul id="dropdownMenuIngredients" class="main__dropdownMenu-ul">
                         <label for="inputSearchIngredient" class="visually-hidden">Rechercher un ingrédient</label>
-                        <input type="search" id="inputSearchIngredient" name="inputSearchIngredient"
+                        <input type="text" id="inputSearchIngredient" name="inputSearchIngredient"
                             class="main__dropdownSearchInput">
                         <span class="fa-solid fa-magnifying-glass main__dropdown-magnifying-glass-icon"></span>
+                        <!--<button class="main__dropdown-xmark-icon" type="reset" aria-label="Clear input"
+                            title="Clear input">×</button>-->
                         <span class="fa-solid fa-xmark main__dropdown-xmark-icon"></span>
                         <!-- <li><a class="main__dropdown-item" href="#">Action</a></li>
                         <li><a class="main__dropdown-item" href="#">Another action</a></li>
@@ -65,10 +67,12 @@
                             class="fa fa-chevron-down main__dropdownIcon"></i></button>
                     <ul id="dropdownMenuDevices" class="main__dropdownMenu-ul">
                         <label for="inputSearchDevice" class="visually-hidden">Rechercher un appareil</label>
-                        <input type="search" id="inputSearchDevice" name="inputSearchDevice"
+                        <input type="text" id="inputSearchDevice" name="inputSearchDevice"
                             class="main__dropdownSearchInput">
                         <span class="fa-solid fa-magnifying-glass main__dropdown-magnifying-glass-icon"></span>
-                        <span class="fa-solid fa-xmark main__dropdown-xmark-icon"></span>
+                        <button class="main__dropdown-xmark-icon" type="reset" aria-label="Clear input"
+                            title="Clear input">×</button>
+                        <!--<span class="fa-solid fa-xmark main__dropdown-xmark-icon"></span> -->
                         <!-- <li><a class="main__dropdown-item" href="#">Action</a></li>
                         <li><a class="main__dropdown-item" href="#">Another action</a></li>
                         <li><a class="main__dropdown-item" href="#">Something else here</a></li> -->
@@ -79,7 +83,7 @@
                             class="fa fa-chevron-down main__dropdownIcon"></i></button>
                     <ul id="dropdownMenuUstensiles" class="main__dropdownMenu-ul">
                         <label for="inputSearchUstensile" class="visually-hidden">Rechercher un ustensile</label>
-                        <input type="search" id="inputSearchUstensile" name="inputSearchUstensile"
+                        <input type="text" id="inputSearchUstensile" name="inputSearchUstensile"
                             class="main__dropdownSearchInput">
                         <span class="fa-solid fa-magnifying-glass main__dropdown-magnifying-glass-icon"></span>
                         <span class="fa-solid fa-xmark main__dropdown-xmark-icon"></span>
@@ -91,6 +95,7 @@
             </div>
             <h2 class="main__h2">1500 recettes</h2>
         </div>
+        <div id="tags-container" class="main__tags-container"></div>
         <div id="card-container" tabindex="-1">
             <div class="recipe-card">
                 <aside>

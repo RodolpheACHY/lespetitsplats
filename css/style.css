@@ -251,8 +251,8 @@ main {
 }
 .main__dropdown-magnifying-glass-icon {
     position: absolute; 
-    right: 27px;
-    top: 10%; 
+    right: 30px;
+    top: 7%;
     transform: translateY(-50%); 
     width: 13.5px;
     height: 14px;
@@ -263,17 +263,19 @@ main {
 }
 .main__dropdown-xmark-icon {
     position: absolute; 
-    right: 51px;
-    top: 7%;
+    right: 57px;
+    top: 5%;
     transform: translateY(-50%); 
     width: 6px;
     height: 6px;
     flex-shrink: 0;
     stroke-width: 1px;
     background-size: contain; 
-    pointer-events: none; /* Évite que l'icône interfère avec les clics */
+    pointer-events: none; 
     color: #7A7A7A;
+    cursor: pointer; 
 }
+
 .main__dropdown-item {
     text-decoration: none;
     color: #1B1B1B;
@@ -421,3 +423,15 @@ main {
     cursor: pointer;          /* Curseur clic */
     opacity: 1;
   }
+
+.main__tags-container {
+    display: flex;
+    gap: 20px;
+}
+
+.main__tag {
+    padding : 10px;
+    background-color: #FFD15B;
+    border-radius: 12px;
+
+}
