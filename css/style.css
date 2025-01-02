@@ -251,6 +251,7 @@ main {
 
 
 .main__containerInputDropdown {
+    position: relative;
     list-style-type: none;
     padding-left: 20px;
     border-bottom-right-radius: 11px;
@@ -262,7 +263,7 @@ main {
     margin-top: 0px;
     /* overflow: scroll; */
     display: none; /* Par défaut, caché */
-    position : absolute;
+    /* position : absolute; */
     width: 195px;
     /* height: 300px; */
     z-index: 2;
@@ -274,7 +275,7 @@ main {
 .main__dropdown-magnifying-glass-icon {
     position: absolute; 
     right: 30px;
-    top: 7%;
+    top: 20px;
     transform: translateY(-50%); 
     width: 13.5px;
     height: 14px;
@@ -286,7 +287,7 @@ main {
 .main__dropdown-xmark-icon {
     position: absolute; 
     right: 57px;
-    top: 5%;
+    top: 15px;
     transform: translateY(-50%); 
     width: 6px;
     height: 6px;

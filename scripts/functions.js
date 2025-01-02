@@ -169,11 +169,13 @@ export function displayIngredients(recipes) {
 
 export function toggleIngredientsList(recipes) {
   const dropdownMenu = document.getElementById("dropdownMenuIngredients");
+  const containerInputDropdownIngredients = document.getElementById("containerInputDropdownIngredients");
   const dropdownBtnIngredients = document.getElementById(
     "dropdownBtnIngredients"
   );
   dropdownMenu.classList.toggle("show");
   dropdownBtnIngredients.classList.toggle("show");
+  containerInputDropdownIngredients.classList.toggle("show");
 }
 
 export function createListItem(text, parentElement, isSelected) {
