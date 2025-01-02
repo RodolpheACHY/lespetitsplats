@@ -63,7 +63,6 @@ function displayRecipes(recipes) {
 }
 
 function countRecipes(recipes) {
-
 // Sélectionner le h2 où le nombre sera affiché
 const recipeCountH2 = document.getElementById("recipeCountH2");
 
@@ -189,10 +188,20 @@ function createListItem(text, parentElement) {
 function addTag(text) {
   const tagsContainer = document.getElementById("tags-container");
   const tag = document.createElement("span");
+  const removeIcon = document.createElement("span");
   tag.textContent = text;
   tag.classList.add("main__tag");
+  removeIcon.textContent = "✖"; 
+  removeIcon.classList.add("main__remove-tag");
+  removeIcon.style.cursor = "pointer"; 
+  removeIcon.addEventListener("click", () => {
+    tag.remove(); 
+  });
+  tag.appendChild(removeIcon);
   tagsContainer.appendChild(tag);
 }
+
+
 
 function toggleDropdown(element) {
   const parentUl = element.closest('ul');
@@ -454,7 +463,7 @@ function init() {
 
   // affiche les recettes
   displayRecipes(recipes);
-  countRecipes();
+  //countRecipes(recipes);
 
   // affichage des listes
   initDropdownIngredient(recipes);
