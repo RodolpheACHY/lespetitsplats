@@ -248,6 +248,29 @@ main {
 .main__dropdownMenu-ul.show {
     display: block;
 }
+
+
+.main__containerInputDropdown {
+    list-style-type: none;
+    padding-left: 20px;
+    border-bottom-right-radius: 11px;
+    border-bottom-left-radius: 11px;
+    background-color: #fff;
+    padding-bottom: 15px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    /* overflow: scroll; */
+    display: none; /* Par défaut, caché */
+    position : absolute;
+    width: 195px;
+    /* height: 300px; */
+    z-index: 2;
+}
+.main__containerInputDropdown.show {
+    display: block;
+}
+
 .main__dropdown-magnifying-glass-icon {
     position: absolute; 
     right: 30px;
