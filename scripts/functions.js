@@ -129,6 +129,30 @@ export function handleSearchListIngredients(event) {
   return displayFilteredIngredients(Array.from(filteredIngredients));
 }
 
+export function submitSearchOnClick(event) {
+  const searchInput = document.getElementById("header__search-container__input");
+  const BtnSearchPrincipal = document.getElementById("header__search-container__button");
+  BtnSearchPrincipal.addEventListener("click", function (event) {
+      event.preventDefault();
+      const query = searchInput.value.trim().toLowerCase();
+      if (query.length >= 3) {
+        const filteredRecipes = recipes.filter(
+          (recipe) =>
+            recipe.name.toLowerCase().includes(query) ||
+            recipe.description.toLowerCase().includes(query) ||
+            recipe.ingredients.some((ingredient) =>
+              ingredient.ingredient.toLowerCase().includes(query)
+            )
+        );
+        displayRecipes(filteredRecipes);
+        // Vérifier et afficher le message
+        displayNoResultsMessage(filteredRecipes, "no-results-message");
+      } else {
+        displayRecipes(recipes); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères
+      }
+    });
+}
+
 export function displayFilteredIngredients(filteredIngredients) {
   const ingredients =  [...filteredIngredients] //getIngredientList();
   const ingredientsList = document.getElementById("dropdownMenuIngredients");
@@ -413,7 +437,6 @@ export function toggleRotate(event) {
   const icon = event.currentTarget.querySelector(".main__dropdownIcon");
   icon.classList.toggle("rotate");
 }
-
 
 export function displayNoResultsMessage(recipes, containerId) {
   const noResultsMessage = document.getElementById(containerId);

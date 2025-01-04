@@ -4,6 +4,7 @@ import {
   toggleAppliancesList,
   toggleUstensilesList,
   toggleRotate,
+  submitSearchOnClick,
   handleSearchListIngredients,
   handleSearchListAppliances,
   handleSearchListUstensiles,
@@ -37,6 +38,10 @@ function init() {
     button.addEventListener("click", toggleRotate);
   });
 
+  // search sur le button de la recherche principale
+  const searchButtonPrincipal = document.getElementById("header__search-container__button");
+  searchButtonPrincipal.addEventListener("click", submitSearchOnClick);
+  
   // gère le filtre des ingrédients affichés dans le dropdown
   const inputSearchIngredient = document.getElementById(
     "inputSearchIngredient"
