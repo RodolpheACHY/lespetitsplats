@@ -13,7 +13,7 @@ import {
   initDropdownUstensiles,
   handleSearch,
   clearInput,
-  displayIngredients,
+  //displayIngredients,
   displayAppliances,
   displayUstensiles,
 } from "../functions.js";
@@ -41,7 +41,7 @@ function init() {
   const inputSearchIngredient = document.getElementById(
     "inputSearchIngredient"
   );
-  //inputSearchIngredient.addEventListener("input", handleSearchListIngredients);
+  inputSearchIngredient.addEventListener("input", handleSearchListIngredients);
 
   // gère le filtre des appareils affichés dans le dropdown
   const inputSearchDevice = document.getElementById("inputSearchDevice");
@@ -62,13 +62,14 @@ function init() {
   initDropdownIngredient(recipes);
   initDropdownAppliances(recipes);
   initDropdownUstensiles(recipes);
-  displayIngredients(recipes);
+  //displayIngredients(recipes);
   displayAppliances(recipes);
   displayUstensiles(recipes);
 
   handleSearch(recipes);
 
-  // handleSearchIngredients();
+  //handleSearchIngredients();
+  handleSearchListIngredients();
   //clearInput();
   //clearInputDropdown();
 

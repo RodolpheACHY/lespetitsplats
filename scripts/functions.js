@@ -1,6 +1,7 @@
 import {
   setIngredientList,
   getIngredientList,
+  getApplianceList,
   getSelectedIngredients,
   setApplianceList,
   getSelectedAppliances,
@@ -84,6 +85,8 @@ export function handleSearch(recipes) {
           )
       );
       displayRecipes(filteredRecipes);
+      // Vérifier et afficher le message
+      displayNoResultsMessage(filteredRecipes, "no-results-message");
     } else {
       displayRecipes(recipes); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères
     }
@@ -100,12 +103,12 @@ export function initDropdownIngredient(recipes) {
       allIngredients.add(ingredient.ingredient.toLowerCase());
     });
   });
-  setIngredientList(Array.from(allIngredients));
+  setIngredientList(Array.from(allIngredients).sort());
   displayFilteredIngredients(getIngredientList());
 }
 
 export function handleSearchListIngredients(event) {
-  event.preventDefault();
+  //event.preventDefault();
 
   const searchInputListIngredients = document.getElementById(
     "inputSearchIngredient"
@@ -122,15 +125,16 @@ export function handleSearchListIngredients(event) {
   Array.from(domIngredientsList.querySelectorAll("li.dynamic")).forEach((li) =>
     li.remove()
   );
-  return displayFilteredIngredients();
+
+  return displayFilteredIngredients(Array.from(filteredIngredients));
 }
 
-export function displayFilteredIngredients() {
-  const ingredients = getIngredientList();
+export function displayFilteredIngredients(filteredIngredients) {
+  const ingredients =  [...filteredIngredients] //getIngredientList();
   const ingredientsList = document.getElementById("dropdownMenuIngredients");
-  /*Array.from(ingredientsList.querySelectorAll("li.dynamic")).forEach((li) =>
+  Array.from(ingredientsList.querySelectorAll("li.dynamic")).forEach((li) =>
     li.remove()
-  );*/
+  );
   ingredientsList.innerHTML = "";
   getSelectedIngredients().forEach((ingredient) => {
     console.log("selectedIngredient", ingredient, ingredientsList);
@@ -149,12 +153,12 @@ export function displayFilteredIngredients() {
 }
 
 export function displayIngredients(recipes) {
-  /*const ingredientsList = document.getElementById("dropdownMenuIngredients");
+  const ingredientsList = document.getElementById("dropdownMenuIngredients");
   // Vider les éléments dynamiques actuels avant d'ajouter de nouveaux
   Array.from(ingredientsList.querySelectorAll("li.dynamic")).forEach((li) =>
     li.remove()
   );
-*/
+
   const allIngredients = new Set();
   // Ajouter chaque ingrédient à la liste sous les éléments statiques
   recipes.forEach((recipe) => {
@@ -191,7 +195,7 @@ export function createListItem(text, parentElement, isSelected) {
     li.remove();
   });
   //console.log("li", li, parentElement);
-  //parentElement.appendChild(li);
+  parentElement.appendChild(li);
   return li;
 }
 
@@ -222,6 +226,10 @@ export function toggleDropdown(element) {
       if (associatedBtn) {
         associatedBtn.classList.toggle("show");
         toggleRotate({ currentTarget: associatedBtn });
+      }
+      const containerInputDropdown = dropdownContainer.querySelector(".main__containerInputDropdown");
+      if (containerInputDropdown) {
+        containerInputDropdown.classList.toggle("show");
       }
     }
   }
@@ -262,7 +270,7 @@ export function handleSearchListAppliances(event) {
   const query = searchInputListAppliances.value.trim().toLowerCase();
 
   // Filtrer les appareils en fonction de la requête
-  const filteredAppliances = appliancesList.filter(
+  const filteredAppliances = getApplianceList.filter(
     (appliance) => appliance.includes(query) // Vérifie si l'ingrédient contient la requête
   );
   // On choisit notre élément qui va contenir la liste d'ingrédients filtrée
@@ -404,4 +412,16 @@ export function toggleUstensilesList() {
 export function toggleRotate(event) {
   const icon = event.currentTarget.querySelector(".main__dropdownIcon");
   icon.classList.toggle("rotate");
+}
+
+
+export function displayNoResultsMessage(recipes, containerId) {
+  const noResultsMessage = document.getElementById(containerId);
+  if (recipes.length === 0) {
+    noResultsMessage.classList.remove("hide");
+    noResultsMessage.classList.add("show");
+  } else {
+    noResultsMessage.classList.remove("show");
+    noResultsMessage.classList.add("hide");
+  }
 }

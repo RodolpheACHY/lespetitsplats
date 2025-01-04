@@ -1,8 +1,8 @@
-let ingredientsList = []; // ce tableau va recevoir les ingredients cliqués pour filtrer les recettes
+let ingredientsList = []; // ce tableau va contenir tous les ingrédients de la lsite
 let appliancesList = []; // ce tableau va recevoir les Appliances cliqués pour filtrer les recettes
 let ustensilesList = [];
 
-const selectedIngredients = ["ananas"];
+const selectedIngredients = [""]; // ce tableau contient tous les ingrédients sélectionnés pour la recherhe 
 const selectedAppliances = ["Blender"];
 const selectedUstensiles = ["Bol"];
 

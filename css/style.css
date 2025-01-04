@@ -117,6 +117,30 @@ body {
 .header__search-container__i:hover {
     color : #000000
 }
+
+.header__no-results-message {
+    /* display: none; */
+    opacity: 0;
+    color: #FFD15B;
+    font-size: 25px;
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(-10px);
+  }
+  
+  .header__no-results-message.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .header__no-results-message.hide {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
 main {
     background-color: #EDEDED;
     padding-top: 20px;
@@ -254,8 +278,8 @@ main {
     position: relative;
     list-style-type: none;
     padding-left: 20px;
-    border-bottom-right-radius: 11px;
-    border-bottom-left-radius: 11px;
+    /* border-bottom-right-radius: 11px;
+    border-bottom-left-radius: 11px; */
     background-color: #fff;
     padding-bottom: 15px;
     padding-right: 0px;
