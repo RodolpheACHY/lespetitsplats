@@ -10,11 +10,11 @@ import {
 } from "./store.js";
 
 export function displayRecipes(recipes) {
-
+  /*
   if (!Array.isArray(recipes)) {
     console.error("Invalid recipes data:", recipes);
     return;
-  }
+  } */
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
 
