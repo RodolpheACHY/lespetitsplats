@@ -8,7 +8,13 @@ import {
   setUstensilesList,
   getSelectedUstensiles,
 } from "./store.js";
+
 export function displayRecipes(recipes) {
+
+  if (!Array.isArray(recipes)) {
+    console.error("Invalid recipes data:", recipes);
+    return;
+  }
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
 
@@ -85,6 +91,7 @@ export function handleSearch(recipes, query) {
       displayNoResultsMessage(query, filteredRecipes, "no-results-message");
     } else {
       displayRecipes(recipes); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères
+      displayNoResultsMessage(query, recipes, "no-results-message");
     }
 }
 
@@ -259,7 +266,7 @@ export function toggleDropdown(element) {
   }
 }
 
-export function clearInput(searchId, clearIconId) {
+export function clearInput(searchId, clearIconId, recipes) {
   const searchInput = document.getElementById(searchId);
   const clearIcon = document.getElementById(clearIconId);
   clearIcon.addEventListener("click", function () {
@@ -267,6 +274,7 @@ export function clearInput(searchId, clearIconId) {
     console.log(clearIcon);
     searchInput.value = ""; // Vider l'input
     searchInput.focus();
+    displayRecipes(recipes);
   });
 }
 

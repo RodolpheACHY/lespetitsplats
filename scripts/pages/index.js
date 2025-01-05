@@ -93,10 +93,10 @@ function init() {
   //clearInputDropdown();
 
   // clear inputs
-  clearInput("header__search-container__input", "input-xmark-icon");
-  clearInput("inputSearchIngredient", "iconXmarkInputIngredients");
-  clearInput("inputSearchDevice", "iconXmarkInputDevices");
-  clearInput("inputSearchUstensile", "iconXmarkInputUstensiles");
+  clearInput("header__search-container__input", "input-xmark-icon", recipes);
+  clearInput("inputSearchIngredient", "iconXmarkInputIngredients", recipes);
+  clearInput("inputSearchDevice", "iconXmarkInputDevices", recipes);
+  clearInput("inputSearchUstensile", "iconXmarkInputUstensiles", recipes);
 }
 
 //init();
