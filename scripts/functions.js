@@ -70,10 +70,7 @@ export function countRecipes(recipes) {
 }
 
 export function handleSearch(recipes, query) {
-  /* const searchInput = document.getElementById(
-    "header__search-container__input"
-  ); */
-  const trimmedQuery = query.toLowerCase();
+  const trimmedQuery = query.trim().toLowerCase();
   if (trimmedQuery.length >= 3) {
     const filteredRecipes = recipes.filter(
       (recipe) =>
@@ -131,6 +128,7 @@ export function handleSubmit(e) {
   e.preventDefault();
 }
 
+/*
 export function submitSearchOnClick(event) {
   event.preventDefault();
   const searchInput = document.getElementById("header__search-container__input");
@@ -151,9 +149,9 @@ export function submitSearchOnClick(event) {
         displayNoResultsMessage(filteredRecipes, "no-results-message");
       } else {
         displayRecipes(recipes); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères
-      } */
+      } 
     }); 
-}
+} */
 
 export function displayFilteredIngredients(filteredIngredients) {
   const ingredients =  [...filteredIngredients] //getIngredientList();

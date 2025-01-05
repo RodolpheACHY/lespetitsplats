@@ -4,7 +4,7 @@ import {
   toggleAppliancesList,
   toggleUstensilesList,
   toggleRotate,
-  submitSearchOnClick,
+  //submitSearchOnClick,
   handleSearchListIngredients,
   handleSearchListAppliances,
   handleSearchListUstensiles,
@@ -39,9 +39,10 @@ function init() {
     button.addEventListener("click", toggleRotate);
   });
 
+  /*
   // search sur le button de la recherche principale
   const searchButtonPrincipal = document.getElementById("header__search-container__button");
-  searchButtonPrincipal.addEventListener("click", submitSearchOnClick);
+  searchButtonPrincipal.addEventListener("click", submitSearchOnClick); */
   
   // gère le filtre des ingrédients affichés dans le dropdown
   const inputSearchIngredient = document.getElementById(
@@ -84,7 +85,7 @@ function init() {
   displayAppliances(recipes);
   displayUstensiles(recipes);
 
-  handleSearch(recipes);
+  // handleSearch(recipes);
 
   //handleSearchIngredients();
   handleSearchListIngredients();
