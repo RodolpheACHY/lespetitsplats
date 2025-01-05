@@ -64,6 +64,14 @@ function init() {
   const form = document.getElementById("header__search-container__form");
   form.addEventListener('submit', handleSubmit);
 
+
+  //submit des recherche via l'input et via le bouton 
+  const searchButton = document.getElementById("header__search-container__button");
+  const searchInput = document.getElementById("header__search-container__input");
+  
+  searchInput.addEventListener("input", () => handleSearch(recipes, searchInput.value));
+  searchButton.addEventListener("click", () => handleSearch(recipes, searchInput.value));
+
   // affiche les recettes
   displayRecipes(recipes);
   //countRecipes(recipes);

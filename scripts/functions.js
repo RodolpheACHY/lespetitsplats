@@ -69,20 +69,19 @@ export function countRecipes(recipes) {
   recipeCountH2.textContent = `${recipes.length} recettes`;
 }
 
-export function handleSearch(recipes) {
-  const searchInput = document.getElementById(
+export function handleSearch(recipes, query) {
+  /* const searchInput = document.getElementById(
     "header__search-container__input"
-  );
-  searchInput.addEventListener("input", function () {
-    const query = searchInput.value.trim().toLowerCase();
-    if (query.length >= 3) {
-      const filteredRecipes = recipes.filter(
-        (recipe) =>
-          recipe.name.toLowerCase().includes(query) ||
-          recipe.description.toLowerCase().includes(query) ||
-          recipe.ingredients.some((ingredient) =>
-            ingredient.ingredient.toLowerCase().includes(query)
-          )
+  ); */
+  const trimmedQuery = query.toLowerCase();
+  if (trimmedQuery.length >= 3) {
+    const filteredRecipes = recipes.filter(
+      (recipe) =>
+        recipe.name.toLowerCase().includes(trimmedQuery) ||
+        recipe.description.toLowerCase().includes(trimmedQuery) ||
+        recipe.ingredients.some((ingredient) =>
+          ingredient.ingredient.toLowerCase().includes(trimmedQuery)
+        )
       );
       displayRecipes(filteredRecipes);
       // Vérifier et afficher le message
@@ -90,7 +89,6 @@ export function handleSearch(recipes) {
     } else {
       displayRecipes(recipes); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères
     }
-  });
 }
 
 // fonction qui affiche notre liste initiale d'ingrédients
