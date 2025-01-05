@@ -17,6 +17,7 @@ import {
   //displayIngredients,
   displayAppliances,
   displayUstensiles,
+  handleSubmit
 } from "../functions.js";
 
 function init() {
@@ -58,6 +59,10 @@ function init() {
 
   // Récupère les datas des recettes
   const recipes = getRecipes();
+
+  //empèche les datas des recettes
+  const form = document.getElementById("header__search-container__form");
+  form.addEventListener('submit', handleSubmit);
 
   // affiche les recettes
   displayRecipes(recipes);

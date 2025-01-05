@@ -86,7 +86,7 @@ export function handleSearch(recipes) {
       );
       displayRecipes(filteredRecipes);
       // Vérifier et afficher le message
-      displayNoResultsMessage(filteredRecipes, "no-results-message");
+      displayNoResultsMessage(query, filteredRecipes, "no-results-message");
     } else {
       displayRecipes(recipes); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères
     }
@@ -129,12 +129,16 @@ export function handleSearchListIngredients(event) {
   return displayFilteredIngredients(Array.from(filteredIngredients));
 }
 
+export function handleSubmit(e) {
+  e.preventDefault();
+}
+
 export function submitSearchOnClick(event) {
+  event.preventDefault();
   const searchInput = document.getElementById("header__search-container__input");
   const BtnSearchPrincipal = document.getElementById("header__search-container__button");
-  BtnSearchPrincipal.addEventListener("click", function (event) {
-      event.preventDefault();
-      const query = searchInput.value.trim().toLowerCase();
+  BtnSearchPrincipal.addEventListener("click", function () {
+      /* const query = searchInput.value.trim().toLowerCase();
       if (query.length >= 3) {
         const filteredRecipes = recipes.filter(
           (recipe) =>
@@ -149,8 +153,8 @@ export function submitSearchOnClick(event) {
         displayNoResultsMessage(filteredRecipes, "no-results-message");
       } else {
         displayRecipes(recipes); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères
-      }
-    });
+      } */
+    }); 
 }
 
 export function displayFilteredIngredients(filteredIngredients) {
@@ -438,9 +442,10 @@ export function toggleRotate(event) {
   icon.classList.toggle("rotate");
 }
 
-export function displayNoResultsMessage(recipes, containerId) {
+export function displayNoResultsMessage(inputValue, recipes, containerId) {
   const noResultsMessage = document.getElementById(containerId);
-  if (recipes.length === 0) {
+  if (inputValue && recipes.length === 0) {
+    noResultsMessage.textContent = `Aucune recette ne contient '${inputValue}'. Vous pouvez chercher «tarte aux pommes », « poisson », etc`;
     noResultsMessage.classList.remove("hide");
     noResultsMessage.classList.add("show");
   } else {
