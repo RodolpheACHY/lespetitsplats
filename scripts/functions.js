@@ -275,6 +275,7 @@ export function clearInput(searchId, clearIconId, recipes) {
     searchInput.value = ""; // Vider l'input
     searchInput.focus();
     displayRecipes(recipes);
+    displayNoResultsMessage("", recipes, "no-results-message")
   });
 }
 
