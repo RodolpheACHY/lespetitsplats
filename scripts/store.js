@@ -2,12 +2,12 @@ let ingredientsList = []; // ce tableau va contenir tous les ingrédients de la 
 let appliancesList = []; // ce tableau va recevoir les Appliances cliqués pour filtrer les recettes
 let ustensilesList = [];
 
-const selectedIngredients = [""]; // ce tableau contient tous les ingrédients sélectionnés pour la recherhe 
-const selectedAppliances = ["Blender"];
-const selectedUstensiles = ["Bol"];
+const selectedIngredients = []; // ce tableau contient tous les ingrédients sélectionnés pour la recherhe
+const selectedAppliances = [];
+const selectedUstensiles = [];
 
 export function setIngredientList(list) {
-  console.log('ingredients list', list);
+  console.log("ingredients list", list);
   ingredientsList = list;
 }
 export function getIngredientList() {
@@ -45,4 +45,21 @@ export function setSelectedUstensiles(list) {
 }
 export function getSelectedUstensiles() {
   return selectedUstensiles;
+}
+
+export function addSelectedItem(item, type) {
+  switch (type) {
+    case "ingredient":
+      selectedIngredients.push(item);
+      break;
+    case "appliance":
+      selectedAppliances.push(item);
+      break;
+    case "ustensil":
+      selectedUstensiles.push(item);
+      break;
+    default:
+      console.error("error unknown type", item, type);
+      break;
+  }
 }
