@@ -1,11 +1,12 @@
 import {
   setIngredientList,
   getIngredientList,
-  getApplianceList,
   getSelectedIngredients,
   setApplianceList,
+  getApplianceList,
   getSelectedAppliances,
   setUstensilesList,
+  getUstensilesList,
   getSelectedUstensiles,
   addSelectedItem,
 } from "./store.js";
@@ -140,30 +141,6 @@ export function handleSubmit(e) {
   e.preventDefault();
 }
 
-/*
-export function submitSearchOnClick(event) {
-  event.preventDefault();
-  const searchInput = document.getElementById("header__search-container__input");
-  const BtnSearchPrincipal = document.getElementById("header__search-container__button");
-  BtnSearchPrincipal.addEventListener("click", function () {
-      /* const query = searchInput.value.trim().toLowerCase();
-      if (query.length >= 3) {
-        const filteredRecipes = recipes.filter(
-          (recipe) =>
-            recipe.name.toLowerCase().includes(query) ||
-            recipe.description.toLowerCase().includes(query) ||
-            recipe.ingredients.some((ingredient) =>
-              ingredient.ingredient.toLowerCase().includes(query)
-            )
-        );
-        displayRecipes(filteredRecipes);
-        // Vérifier et afficher le message
-        displayNoResultsMessage(filteredRecipes, "no-results-message");
-      } else {
-        displayRecipes(recipes); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères
-      } 
-    }); 
-} */
 
 export function displayFilteredIngredients() {
   const ingredients = getIngredientList();
@@ -216,6 +193,8 @@ export function createListItem(text, type, isSelected) {
     const type = target.dataset.type;
     addSelectedItem(target.textContent.toLowerCase(), type);
     displayFilteredIngredients();
+    displayFilteredAppliances();
+    displayFilteredUstensiles();
     displayTags();
     toggleDropdown(li);
     /*
@@ -294,14 +273,15 @@ export function clearInput(searchId, clearIconId, recipes) {
 
 // fonction qui affiche notre liste initiale des appareils
 export function initDropdownAppliances(recipes) {
-  // Créer un ensemble pour stocker tous les ingrédients
+  // Créer un ensemble pour stocker tous les appareils
   const allAppliances = new Set();
-  // Parcourir chaque recette pour récupérer tous les ingrédients
+  // Parcourir chaque recette pour récupérer tous les appareils
   recipes.forEach((recipe) => {
-    allAppliances.add(recipe.appliance.toLowerCase());
-  });
-  setApplianceList(Array.from(allAppliances));
-  displayFilteredAppliances(Array.from(allAppliances));
+      allAppliances.add(recipe.appliance.toLowerCase());
+  });  
+  setApplianceList(Array.from(allAppliances).sort());
+  //displayFilteredAppliances(Array.from(allAppliances));
+  displayFilteredAppliances(getApplianceList());
 }
 
 export function handleSearchListAppliances(event) {
@@ -315,7 +295,7 @@ export function handleSearchListAppliances(event) {
   const filteredAppliances = getApplianceList.filter(
     (appliance) => appliance.includes(query) // Vérifie si l'ingrédient contient la requête
   );
-  // On choisit notre élément qui va contenir la liste d'ingrédients filtrée
+  // On choisit notre élément qui va contenir la liste des appareils filtrée
   const domAppliancesList = document.getElementById("dropdownMenuDevices");
   // Vider les éléments dynamiques actuels avant d'ajouter de nouveaux
   Array.from(domAppliancesList.querySelectorAll("li.dynamic")).forEach((li) =>
@@ -324,23 +304,31 @@ export function handleSearchListAppliances(event) {
   return displayFilteredAppliances(Array.from(filteredAppliances));
 }
 
-export function displayFilteredAppliances(appliance) {
+export function displayFilteredAppliances() {
+  const appliances = getApplianceList();
   const appliancesList = document.getElementById("dropdownMenuDevices");
-  Array.from(appliancesList.querySelectorAll("li.dynamic")).forEach((li) =>
+  /* Array.from(appliancesList.querySelectorAll("li.dynamic")).forEach((li) =>
     li.remove()
-  );
-
+  ); */
+  appliancesList.innerHTML = "";
   getSelectedAppliances().forEach((appliance) => {
+    console.log("selectedDevice", appliance, appliancesList);
     // affichage en jaune
+    const li = createListItem(appliance, "appliance", true);
+    appliancesList.appendChild(li);
   });
-  appliance.forEach((appliance) => {
-    if (!getSelectedAppliances().includes(appliance)) {
-      const li = createListItem(appliance, "appliance");
-      appliancesList.appendChild(li);
+  appliances.forEach((appliance) => {
+    if (!getSelectedAppliances()
+      .map((i) => i.toLowerCase())
+      .includes(appliance.toLowerCase())
+    ) {
+        const li = createListItem(appliance, "appliance");
+        appliancesList.appendChild(li);
     }
   });
 }
 
+/*
 export function displayAppliances(recipes) {
   const appliancesList = document.getElementById("dropdownMenuDevices");
   // Vider les éléments dynamiques actuels avant d'ajouter de nouveaux
@@ -358,13 +346,17 @@ export function displayAppliances(recipes) {
     .forEach((appliance) => {
       createListItem(appliance, "appliance");
     });
-}
+} */
 
 export function toggleAppliancesList() {
   const dropdownMenu = document.getElementById("dropdownMenuDevices");
+  const containerInputDropdownDevices = document.getElementById(
+    "containerInputDropdownDevices"
+  );
   const dropdownBtnDevices = document.getElementById("dropdownBtnDevices");
   dropdownMenu.classList.toggle("show");
   dropdownBtnDevices.classList.toggle("show");
+  containerInputDropdownDevices.classList.toggle("show");
 }
 
 // fonction qui affiche notre liste initiale d'ingrédients
@@ -377,8 +369,9 @@ export function initDropdownUstensiles(recipes) {
       allUstensiles.add(ustensil.toLowerCase());
     });
   });
-  setUstensilesList(Array.from(allUstensiles));
-  displayFilteredUstensiles(Array.from(allUstensiles));
+  setUstensilesList(Array.from(allUstensiles).sort());
+  //displayFilteredUstensiles(Array.from(allUstensiles));
+  displayFilteredUstensiles(getUstensilesList());
 }
 
 export function handleSearchListUstensiles(event) {
@@ -390,7 +383,7 @@ export function handleSearchListUstensiles(event) {
   const query = searchInputListUstensiles.value.trim().toLowerCase();
 
   // Filtrer les ingrédients en fonction de la requête
-  const filteredUstensiles = ustensilesList.filter(
+  const filteredUstensiles = getUstensilesList.filter(
     (ustensil) => ustensil.includes(query) // Vérifie si l'ingrédient contient la requête
   );
   // On choisit notre élément qui va contenir la liste d'ingrédients filtrée
@@ -402,22 +395,31 @@ export function handleSearchListUstensiles(event) {
   return displayFilteredUstensiles(Array.from(filteredUstensiles));
 }
 
-export function displayFilteredUstensiles(ustensiles) {
+export function displayFilteredUstensiles() {
+  const ustensiles = getUstensilesList();
   const ustensilesList = document.getElementById("dropdownMenuUstensiles");
-  Array.from(ustensilesList.querySelectorAll("li.dynamic")).forEach((li) =>
+  /* Array.from(ustensilesList.querySelectorAll("li.dynamic")).forEach((li) =>
     li.remove()
-  );
-
+  ); */
+  ustensilesList.innerHTML = "";
   getSelectedUstensiles().forEach((ustensil) => {
+    console.log("selectedUstensile", ustensil, ustensilesList);
     // affichage en jaune
+    const li = createListItem(ustensil, "ustensil", true);
+    ustensilesList.appendChild(li);
   });
   ustensiles.forEach((ustensile) => {
-    if (!getSelectedUstensiles().includes(ustensile)) {
-      createListItem(ustensile, "ustensil");
+    if (!getSelectedUstensiles()
+      .map((i) => i.toLowerCase())
+      .includes(ustensile.toLowerCase())
+  ) {
+      const li = createListItem(ustensile, "ustensil");
+      ustensilesList.appendChild(li);
     }
   });
 }
 
+/*
 export function displayUstensiles(recipes) {
   const ustensilesList = document.getElementById("dropdownMenuUstensiles");
   // Vider les éléments dynamiques actuels avant d'ajouter de nouveaux
@@ -438,15 +440,19 @@ export function displayUstensiles(recipes) {
     .forEach((ustensil) => {
       createListItem(ustensil, ustensilesList);
     });
-}
+}  */
 
 export function toggleUstensilesList() {
   const dropdownMenu = document.getElementById("dropdownMenuUstensiles");
+  const containerInputDropdownUstensiles = document.getElementById(
+    "containerInputDropdownUstensiles"
+  );
   const dropdownBtnUstensiles = document.getElementById(
     "dropdownBtnUstensiles"
   );
   dropdownMenu.classList.toggle("show");
   dropdownBtnUstensiles.classList.toggle("show");
+  containerInputDropdownUstensiles.classList.toggle("show");
 }
 
 // Fonction pour pivoter l'icône chevron associée au bouton cliqué

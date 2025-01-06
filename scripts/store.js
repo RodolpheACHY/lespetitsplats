@@ -26,20 +26,18 @@ export function getApplianceList() {
 export function setApplianceList(list) {
   appliancesList = list;
 }
-export function getUstensilesList() {
-  return ustensilesList;
-}
-export function setUstensilesList(list) {
-  ustensilesList = list;
-}
-
 export function setSelectedAppliances(list) {
   selectedAppliances = list;
 }
 export function getSelectedAppliances() {
   return selectedAppliances;
 }
-
+export function getUstensilesList() {
+  return ustensilesList;
+}
+export function setUstensilesList(list) {
+  ustensilesList = list;
+}
 export function setSelectedUstensiles(list) {
   selectedUstensiles = list;
 }

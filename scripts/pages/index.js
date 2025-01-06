@@ -15,8 +15,8 @@ import {
   handleSearch,
   clearInput,
   //displayIngredients,
-  displayAppliances,
-  displayUstensiles,
+  //displayAppliances,
+  //displayUstensiles,
   handleSubmit,
   displayTags
 } from "../functions.js";
@@ -83,8 +83,8 @@ function init() {
   initDropdownAppliances(recipes);
   initDropdownUstensiles(recipes);
   //displayIngredients(recipes);
-  displayAppliances(recipes);
-  displayUstensiles(recipes);
+  //displayAppliances(recipes);
+  //displayUstensiles(recipes);
   displayTags();
 
   // handleSearch(recipes);
