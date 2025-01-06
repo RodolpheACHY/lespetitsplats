@@ -272,6 +272,9 @@ main {
 .main__dropdownMenu-ul.show {
     display: block;
 }
+.main__dropdownMenu-ul li.selected {
+    background-color: #FFD15B;
+}
 
 
 .main__containerInputDropdown {

@@ -17,7 +17,8 @@ import {
   //displayIngredients,
   displayAppliances,
   displayUstensiles,
-  handleSubmit
+  handleSubmit,
+  displayTags
 } from "../functions.js";
 
 function init() {
@@ -84,6 +85,7 @@ function init() {
   //displayIngredients(recipes);
   displayAppliances(recipes);
   displayUstensiles(recipes);
+  displayTags();
 
   // handleSearch(recipes);
 

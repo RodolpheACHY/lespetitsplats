@@ -7,7 +7,12 @@ import {
   getSelectedAppliances,
   setUstensilesList,
   getSelectedUstensiles,
+  addSelectedItem,
 } from "./store.js";
+
+export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
 
 export function displayRecipes(recipes) {
   /*
@@ -85,14 +90,14 @@ export function handleSearch(recipes, query) {
         recipe.ingredients.some((ingredient) =>
           ingredient.ingredient.toLowerCase().includes(trimmedQuery)
         )
-      );
-      displayRecipes(filteredRecipes);
-      // Vérifier et afficher le message
-      displayNoResultsMessage(query, filteredRecipes, "no-results-message");
-    } else {
-      displayRecipes(recipes); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères
-      displayNoResultsMessage(query, recipes, "no-results-message");
-    }
+    );
+    displayRecipes(filteredRecipes);
+    // Vérifier et afficher le message
+    displayNoResultsMessage(query, filteredRecipes, "no-results-message");
+  } else {
+    displayRecipes(recipes); // Affiche toutes les recettes si la saisie est inférieure à 3 caractères
+    displayNoResultsMessage(query, recipes, "no-results-message");
+  }
 }
 
 // fonction qui affiche notre liste initiale d'ingrédients
@@ -160,51 +165,34 @@ export function submitSearchOnClick(event) {
     }); 
 } */
 
-export function displayFilteredIngredients(filteredIngredients) {
-  const ingredients =  [...filteredIngredients] //getIngredientList();
+export function displayFilteredIngredients() {
+  const ingredients = getIngredientList();
   const ingredientsList = document.getElementById("dropdownMenuIngredients");
-  Array.from(ingredientsList.querySelectorAll("li.dynamic")).forEach((li) =>
-    li.remove()
-  );
+
   ingredientsList.innerHTML = "";
   getSelectedIngredients().forEach((ingredient) => {
     console.log("selectedIngredient", ingredient, ingredientsList);
     // affichage en jaune
-    const capitalizedIngredient = capitalizeFirstLetter(ingredient);
-    const li = createListItem(capitalizedIngredient, ingredientsList, true);
+    const li = createListItem(ingredient, "ingredient", true);
     ingredientsList.appendChild(li);
   });
   ingredients.forEach((ingredient) => {
-    if (!getSelectedIngredients().map((i) => i.toLowerCase()).includes(ingredient.toLowerCase())) {
-      const capitalizedIngredient = capitalizeFirstLetter(ingredient);
-      const li = createListItem(capitalizedIngredient, ingredientsList);
+    if (
+      !getSelectedIngredients()
+        .map((i) => i.toLowerCase())
+        .includes(ingredient.toLowerCase())
+    ) {
+      const li = createListItem(ingredient, "ingredient");
       ingredientsList.appendChild(li);
     }
   });
 }
 
-export function displayIngredients(recipes) {
-  const ingredientsList = document.getElementById("dropdownMenuIngredients");
-  // Vider les éléments dynamiques actuels avant d'ajouter de nouveaux
-  Array.from(ingredientsList.querySelectorAll("li.dynamic")).forEach((li) =>
-    li.remove()
-  );
-
-  const allIngredients = new Set();
-  // Ajouter chaque ingrédient à la liste sous les éléments statiques
-  recipes.forEach((recipe) => {
-    recipe.ingredients.forEach((ingredient) => {
-      allIngredients.add(capitalizeFirstLetter(ingredient.ingredient));
-    });
-  });
-
-  setIngredientList(Array.from(allIngredients).sort());
-  displayFilteredIngredients();
-}
-
 export function toggleIngredientsList(recipes) {
   const dropdownMenu = document.getElementById("dropdownMenuIngredients");
-  const containerInputDropdownIngredients = document.getElementById("containerInputDropdownIngredients");
+  const containerInputDropdownIngredients = document.getElementById(
+    "containerInputDropdownIngredients"
+  );
   const dropdownBtnIngredients = document.getElementById(
     "dropdownBtnIngredients"
   );
@@ -213,28 +201,51 @@ export function toggleIngredientsList(recipes) {
   containerInputDropdownIngredients.classList.toggle("show");
 }
 
-export function createListItem(text, parentElement, isSelected) {
+export function createListItem(text, type, isSelected) {
+  const capitalizedText = capitalizeFirstLetter(text);
   const li = document.createElement("li");
+  li.dataset.type = type;
   if (isSelected) {
     li.classList.add("selected");
   }
   li.classList.add("dynamic");
-  li.textContent = text;
-  li.addEventListener("click", () => {
-    addTag(text);
+  li.textContent = capitalizedText;
+  li.addEventListener("click", (e) => {
+    e.preventDefault();
+    const target = e.target;
+    const type = target.dataset.type;
+    addSelectedItem(target.textContent.toLowerCase(), type);
+    displayFilteredIngredients();
+    displayTags();
     toggleDropdown(li);
-    li.remove();
+    /*
+      mettre à jour les recettes
+    */
   });
   //console.log("li", li, parentElement);
-  parentElement.appendChild(li);
+  //parentElement.appendChild(li);
   return li;
 }
 
+export function displayTags() {
+  const tagsContainer = document.getElementById("tags-container");
+  tagsContainer.innerHTML = "";
+  const tags = [
+    ...getSelectedIngredients(),
+    ...getSelectedAppliances(),
+    ...getSelectedUstensiles(),
+  ];
+  tags.forEach((tag) => {
+    addTag(tag);
+  });
+}
+
 export function addTag(text) {
+  const capitalizedText = capitalizeFirstLetter(text);
   const tagsContainer = document.getElementById("tags-container");
   const tag = document.createElement("span");
   const removeIcon = document.createElement("span");
-  tag.textContent = text;
+  tag.textContent = capitalizedText;
   tag.classList.add("main__tag");
   removeIcon.textContent = "✖";
   removeIcon.classList.add("main__remove-tag");
@@ -258,7 +269,9 @@ export function toggleDropdown(element) {
         associatedBtn.classList.toggle("show");
         toggleRotate({ currentTarget: associatedBtn });
       }
-      const containerInputDropdown = dropdownContainer.querySelector(".main__containerInputDropdown");
+      const containerInputDropdown = dropdownContainer.querySelector(
+        ".main__containerInputDropdown"
+      );
       if (containerInputDropdown) {
         containerInputDropdown.classList.toggle("show");
       }
@@ -275,12 +288,8 @@ export function clearInput(searchId, clearIconId, recipes) {
     searchInput.value = ""; // Vider l'input
     searchInput.focus();
     displayRecipes(recipes);
-    displayNoResultsMessage("", recipes, "no-results-message")
+    displayNoResultsMessage("", recipes, "no-results-message");
   });
-}
-
-export function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
 // fonction qui affiche notre liste initiale des appareils
@@ -326,8 +335,8 @@ export function displayFilteredAppliances(appliance) {
   });
   appliance.forEach((appliance) => {
     if (!getSelectedAppliances().includes(appliance)) {
-      const capitalizedAppliance = capitalizeFirstLetter(appliance);
-      createListItem(capitalizedAppliance, appliancesList);
+      const li = createListItem(appliance, "appliance");
+      appliancesList.appendChild(li);
     }
   });
 }
@@ -347,7 +356,7 @@ export function displayAppliances(recipes) {
   Array.from(allAppliances)
     .sort()
     .forEach((appliance) => {
-      createListItem(appliance, appliancesList);
+      createListItem(appliance, "appliance");
     });
 }
 
@@ -404,8 +413,7 @@ export function displayFilteredUstensiles(ustensiles) {
   });
   ustensiles.forEach((ustensile) => {
     if (!getSelectedUstensiles().includes(ustensile)) {
-      const capitalizedUstensile = capitalizeFirstLetter(ustensile);
-      createListItem(capitalizedUstensile, ustensilesList);
+      createListItem(ustensile, "ustensil");
     }
   });
 }
