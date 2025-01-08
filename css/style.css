@@ -147,8 +147,10 @@ main {
 }
 .main__containerDropdownsH2 {
     display: flex;
-    align-content: space-between;
-    justify-content: space-around;
+    /*align-content: space-between; */
+    justify-content: space-between;
+    margin-left: 100px;
+    margin-right: 60px;
 }
 #main__containerDropdowns {
     display: flex ;
