@@ -12,7 +12,7 @@ body {
     /*background-image: url('/assets/lampos-aritonang-24gR_9lCdes-unsplash_1.png');
     background-size: cover;
     background-position: center;*/
-    height: 760px ;
+    height: 65vh;  /*760px*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,6 +50,7 @@ body {
     align-items:center;
     position: relative;
     width: 100%;
+    cursor: pointer;
 }
 .header__input-xmark-icon {
     position: absolute;
@@ -150,7 +151,7 @@ main {
     /*align-content: space-between; */
     justify-content: space-between;
     margin-left: 100px;
-    margin-right: 60px;
+    margin-right: 18vh;
 }
 #main__containerDropdowns {
     display: flex ;
