@@ -143,16 +143,16 @@ export function displayFilteredIngredients(filteredIngredients = null) {
   displayUnselectedIngredients(ingredientsList, ingredientsToDisplay);
 }
 
-function getIngredientsToDisplay(filteredIngredients) {
+export function getIngredientsToDisplay(filteredIngredients) {
   const allIngredients = getIngredientList();
   return filteredIngredients || allIngredients;
 }
 
-function clearIngredientsList(ingredientsList) {
+export function clearIngredientsList(ingredientsList) {
   ingredientsList.innerHTML = "";
 }
 
-function displaySelectedIngredients(ingredientsList) {
+export function displaySelectedIngredients(ingredientsList) {
   getSelectedIngredients().forEach((ingredient) => {
     const capitalizedIngredient = capitalizeFirstLetter(ingredient);
     const li = createModifiedListItem(capitalizedIngredient, "ingredient", true);
@@ -160,7 +160,7 @@ function displaySelectedIngredients(ingredientsList) {
   });
 }
 
-function displayUnselectedIngredients(ingredientsList, ingredientsToDisplay) {
+export function displayUnselectedIngredients(ingredientsList, ingredientsToDisplay) {
   const selectedIngredients = getSelectedIngredients().map(i => i.toLowerCase());
   ingredientsToDisplay.forEach((ingredient) => {
     if (!selectedIngredients.includes(ingredient.toLowerCase())) {
@@ -171,7 +171,7 @@ function displayUnselectedIngredients(ingredientsList, ingredientsToDisplay) {
   });
 }
 
-  function createModifiedListItem(text, type, isSelected) {
+export function createModifiedListItem(text, type, isSelected) {
     const li = createListItem(text, type, isSelected);
     const newLi = li.cloneNode(true);
     newLi.className = li.className;
@@ -328,16 +328,16 @@ export function handleSearchListAppliances(event) {
     //const appliances = getApplianceList();
   }
 
-  function getAppliancesToDisplay(filteredAppliances) {
+export function getAppliancesToDisplay(filteredAppliances) {
     const allAppliances = getApplianceList();
     return filteredAppliances || allAppliances;
   }
 
-  function clearAppliancesList(appliancesList) {
+export function clearAppliancesList(appliancesList) {
     appliancesList.innerHTML = "";
   }
 
-  function displaySelectedAppliances(appliancesList) {
+export function displaySelectedAppliances(appliancesList) {
     getSelectedAppliances().forEach((appliance) => {
       const capitalizedAppliance = capitalizeFirstLetter(appliance);
       const li = createModifiedListItem(capitalizedAppliance, "appliance", true);
@@ -345,7 +345,7 @@ export function handleSearchListAppliances(event) {
     });
   }
 
-  function displayUnselectedAppliances(appliancesList, appliancesToDisplay) {
+export function displayUnselectedAppliances(appliancesList, appliancesToDisplay) {
     const selectedAppliances = getSelectedAppliances().map(i => i.toLowerCase());
     appliancesToDisplay.forEach((appliance) => {
       if(!selectedAppliances.includes(appliance.toLowerCase())) {
@@ -411,16 +411,16 @@ export function displayFilteredUstensiles(filteredUstensiles = null) {
   displayUnselectedUstensiles(ustensilesList, ustensilesToDisplay);
 }
 
-function getUstensilesToDisplay(filteredUstensiles) {
+export function getUstensilesToDisplay(filteredUstensiles) {
   const allUstensiles = getUstensilesList();
   return filteredUstensiles || allUstensiles;
 }
 
-function clearUstensilesList(ustensilesList) {
+export function clearUstensilesList(ustensilesList) {
   ustensilesList.innerHTML = "";
 }
   
-function displaySelectedUstensiles(ustensilesList) {
+export function displaySelectedUstensiles(ustensilesList) {
   getSelectedUstensiles().forEach((ustensile) => {
     const capitalizedUstensile = capitalizeFirstLetter(ustensile);
     const li = createModifiedListItem(capitalizedUstensile, "ustensile", true);
@@ -428,7 +428,7 @@ function displaySelectedUstensiles(ustensilesList) {
   });
 }
 
-function displayUnselectedUstensiles(ustensilesList, ustensilesToDisplay) {
+export function displayUnselectedUstensiles(ustensilesList, ustensilesToDisplay) {
   const selectedUstensiles = getSelectedUstensiles().map(i => i.toLowerCase());
   ustensilesToDisplay.forEach((ustensile) => {
     if (!selectedUstensiles.includes(ustensile.toLowerCase())) {
