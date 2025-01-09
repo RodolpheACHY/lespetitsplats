@@ -4,7 +4,6 @@ import {
   toggleAppliancesList,
   toggleUstensilesList,
   toggleRotate,
-  //submitSearchOnClick,
   handleSearchListIngredients,
   handleSearchListAppliances,
   handleSearchListUstensiles,
@@ -14,9 +13,6 @@ import {
   initDropdownUstensiles,
   handleSearch,
   clearInput,
-  //displayIngredients,
-  //displayAppliances,
-  //displayUstensiles,
   handleSubmit,
   displayTags
 } from "../functions.js";
@@ -39,11 +35,6 @@ function init() {
   buttons.forEach((button) => {
     button.addEventListener("click", toggleRotate);
   });
-
-  /*
-  // search sur le button de la recherche principale
-  const searchButtonPrincipal = document.getElementById("header__search-container__button");
-  searchButtonPrincipal.addEventListener("click", submitSearchOnClick); */
   
   // gère le filtre des ingrédients affichés dans le dropdown
   const inputSearchIngredient = document.getElementById(
@@ -76,23 +67,16 @@ function init() {
 
   // affiche les recettes
   displayRecipes(recipes);
-  //countRecipes(recipes);
 
-  // affichage des listes
+  // affichage initial des listes
   initDropdownIngredient(recipes);
   initDropdownAppliances(recipes);
   initDropdownUstensiles(recipes);
-  //displayIngredients(recipes);
-  //displayAppliances(recipes);
-  //displayUstensiles(recipes);
+  
+  //affichage des tags
   displayTags();
 
-  // handleSearch(recipes);
-
-  //handleSearchIngredients();
   handleSearchListIngredients();
-  //clearInput();
-  //clearInputDropdown();
 
   // clear inputs
   clearInput("header__search-container__input", "input-xmark-icon", recipes);
