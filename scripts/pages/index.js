@@ -1,21 +1,38 @@
 import { getRecipes } from "../models/index.js";
+
+import { handleSubmit } from "../utils.js";
+
+import {
+  initDropdownIngredient,
+  initDropdownAppliances,
+  initDropdownUstensiles,
+} from "../dropdownInit.js";
+
 import {
   toggleIngredientsList,
   toggleAppliancesList,
   toggleUstensilesList,
-  toggleRotate,
+  toggleRotate
+} from "../dropdownToggle.js";
+
+import {
   handleSearchListIngredients,
   handleSearchListAppliances,
   handleSearchListUstensiles,
-  displayRecipes,
-  initDropdownIngredient,
-  initDropdownAppliances,
-  initDropdownUstensiles,
+} from "../dropdownSearchInput.js";
+
+import { 
   handleSearch,
   clearInput,
-  handleSubmit,
-  displayTags
-} from "../functions.js";
+ } from "../mainSearchInput.js";
+
+import {
+  displayRecipes,
+  
+} from "../cards.js";
+
+import { displayTags } from "../tagSelected.js";
+
 
 function init() {
   // affichage des listes au clic
