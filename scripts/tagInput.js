@@ -97,19 +97,19 @@ export function displayUnselectedAppliances(appliancesList, appliancesToDisplay)
 }  
 
 export function displaySelectedUstensiles(ustensilesList) {
-    getSelectedUstensiles().forEach((ustensile) => {
-      const capitalizedUstensile = capitalizeFirstLetter(ustensile);
-      const li = createModifiedListItem(capitalizedUstensile, "ustensile", true);
+    getSelectedUstensiles().forEach((ustensil) => {
+      const capitalizedUstensile = capitalizeFirstLetter(ustensil);
+      const li = createModifiedListItem(capitalizedUstensile, "ustensil", true);
       ustensilesList.appendChild(li);
     });
 }
   
 export function displayUnselectedUstensiles(ustensilesList, ustensilesToDisplay) {
     const selectedUstensiles = getSelectedUstensiles().map(i => i.toLowerCase());
-    ustensilesToDisplay.forEach((ustensile) => {
-      if (!selectedUstensiles.includes(ustensile.toLowerCase())) {
-        const capitalizedUstensile = capitalizeFirstLetter(ustensile);
-        const li = createListItem(capitalizedUstensile, "ustensile", false);
+    ustensilesToDisplay.forEach((ustensil) => {
+      if (!selectedUstensiles.includes(ustensil.toLowerCase())) {
+        const capitalizedUstensile = capitalizeFirstLetter(ustensil);
+        const li = createListItem(capitalizedUstensile, "ustensil", false);
         ustensilesList.appendChild(li);
       }
     });
