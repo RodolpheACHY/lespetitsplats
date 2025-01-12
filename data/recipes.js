@@ -1,3 +1,18 @@
+/**
+ * Tableau contenant toutes les recettes.
+ * 
+ * Chaque objet dans ce tableau représente une recette avec ses propriétés :
+ * - `id` : Un identifiant unique pour la recette.
+ * - `image` : Le nom du fichier image associé à la recette.
+ * - `name` : Le nom de la recette.
+ * - `servings` : Le nombre de portions ou de personnes que la recette sert.
+ * - `ingredients` : Une liste des ingrédients nécessaires pour la recette.
+ *   - Chaque ingrédient est un objet contenant :
+ *     - `ingredient` : Le nom de l'ingrédient.
+ *     - `quantity` : La quantité nécessaire (facultatif).
+ *     - `unit` : L'unité de mesure associée à la quantité (facultatif).
+ */
+
 export const recipes = [
     {
         "id": 1,

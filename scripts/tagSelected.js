@@ -8,6 +8,14 @@ import {
   capitalizeFirstLetter
 } from "./utils.js"
 
+/**
+ * Affiche les tags sélectionnés (ingrédients, appareils, ustensiles) dans le conteneur des tags.
+ * 
+ * Cette fonction :
+ * - Récupère tous les éléments actuellement sélectionnés (ingrédients, appareils, ustensiles).
+ * - Vide le conteneur des tags pour éviter les doublons.
+ * - Ajoute chaque tag (sélectionné) dans le conteneur des tags.
+ */
 export function displayTags() {
   const tagsContainer = document.getElementById("tags-container");
   tagsContainer.innerHTML = "";
@@ -21,6 +29,17 @@ export function displayTags() {
   });
 }
 
+
+/**
+ * Ajoute un tag individuel au conteneur des tags avec une option de suppression.
+ * 
+ * Cette fonction :
+ * - Crée un élément visuel pour représenter un tag (nom + icône de suppression).
+ * - Ajoute un gestionnaire d'événement sur l'icône de suppression pour permettre
+ *   à l'utilisateur de supprimer le tag.
+ * 
+ * @param {string} text - Le texte du tag à afficher (ex. un ingrédient, un appareil ou un ustensile).
+ */
 export function addTag(text) {
   const capitalizedText = capitalizeFirstLetter(text);
   const tagsContainer = document.getElementById("tags-container");
