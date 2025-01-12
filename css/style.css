@@ -282,7 +282,7 @@ main {
 
 
 .main__containerInputDropdown {
-    position: relative;
+    position: absolute;
     list-style-type: none;
     padding-left: 20px;
     background-color: #fff;
