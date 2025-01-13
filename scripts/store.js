@@ -1,21 +1,20 @@
 // Tableau contenant tous les ingédients
-let ingredientsList = []; 
+let ingredientsList = [];
 
-// Tableau contenant tous les appareils 
-let appliancesList = []; 
+// Tableau contenant tous les appareils
+let appliancesList = [];
 
 // Tableau contenant tous les ustensiles
 let ustensilesList = [];
 
 // tableaux contenant les éléments sélectionnés pour la recherhe
-const selectedIngredients = []; 
+const selectedIngredients = [];
 const selectedAppliances = [];
 const selectedUstensiles = [];
 
-
 /**
  * Met à jour la liste générale des ingrédients.
- * 
+ *
  * @param {Array} list - Tableau contenant tous les ingrédients.
  */
 export function setIngredientList(list) {
@@ -25,7 +24,7 @@ export function setIngredientList(list) {
 
 /**
  * Récupère la liste générale des ingrédients.
- * 
+ *
  * @returns {Array} - La liste des ingrédients actuellement disponibles.
  */
 export function getIngredientList() {
@@ -34,7 +33,7 @@ export function getIngredientList() {
 
 /**
  * Met à jour la liste des ingrédients sélectionnés pour la recherche.
- * 
+ *
  * @param {Array} list - Tableau contenant les ingrédients sélectionnés.
  */
 export function setSelectedIngredients(list) {
@@ -43,7 +42,7 @@ export function setSelectedIngredients(list) {
 
 /**
  * Récupère la liste des ingrédients sélectionnés.
- * 
+ *
  * @returns {Array} - La liste des ingrédients actuellement sélectionnés.
  */
 export function getSelectedIngredients() {
@@ -53,7 +52,7 @@ export function getSelectedIngredients() {
 
 /**
  * Récupère la liste générale des appareils.
- * 
+ *
  * @returns {Array} - La liste des appareils actuellement disponibles.
  */
 export function getApplianceList() {
@@ -62,7 +61,7 @@ export function getApplianceList() {
 
 /**
  * Met à jour la liste générale des appareils.
- * 
+ *
  * @param {Array} list - Tableau contenant tous les appareils.
  */
 export function setApplianceList(list) {
@@ -71,7 +70,7 @@ export function setApplianceList(list) {
 
 /**
  * Met à jour la liste des appareils sélectionnés pour la recherche.
- * 
+ *
  * @param {Array} list - Tableau contenant les appareils sélectionnés.
  */
 export function setSelectedAppliances(list) {
@@ -80,7 +79,7 @@ export function setSelectedAppliances(list) {
 
 /**
  * Récupère la liste des appareils sélectionnés.
- * 
+ *
  * @returns {Array} - La liste des appareils actuellement sélectionnés.
  */
 export function getSelectedAppliances() {
@@ -89,7 +88,7 @@ export function getSelectedAppliances() {
 
 /**
  * Récupère la liste générale des ustensiles.
- * 
+ *
  * @returns {Array} - La liste des ustensiles actuellement disponibles.
  */
 export function getUstensilesList() {
@@ -98,7 +97,7 @@ export function getUstensilesList() {
 
 /**
  * Met à jour la liste des ustensiles sélectionnés pour la recherche.
- * 
+ *
  * @param {Array} list - Tableau contenant les ustensiles sélectionnés.
  */
 export function setUstensilesList(list) {
@@ -107,7 +106,7 @@ export function setUstensilesList(list) {
 
 /**
  * Met à jour la liste des ustensiles sélectionnés pour la recherche.
- * 
+ *
  * @param {Array} list - Tableau contenant les ustensiles sélectionnés.
  */
 export function setSelectedUstensiles(list) {
@@ -116,7 +115,7 @@ export function setSelectedUstensiles(list) {
 
 /**
  * Récupère la liste des ustensiles sélectionnés.
- * 
+ *
  * @returns {Array} - La liste des ustensiles actuellement sélectionnés.
  */
 export function getSelectedUstensiles() {
@@ -124,9 +123,9 @@ export function getSelectedUstensiles() {
 }
 
 /**
- * Ajoute un élément sélectionné (ingrédient, appareil ou ustensile) 
+ * Ajoute un élément sélectionné (ingrédient, appareil ou ustensile)
  * à la liste correspondante.
- * 
+ *
  * @param {string} item - L'élément à ajouter.
  * @param {string} type - Le type de l'élément (ex. "ingredient", "appliance", "ustensil").
  */
@@ -140,6 +139,36 @@ export function addSelectedItem(item, type) {
       break;
     case "ustensil":
       selectedUstensiles.push(item);
+      break;
+    default:
+      console.error("error unknown type", item, type);
+      break;
+  }
+}
+
+/**
+ * supprime un élément sélectionné (ingrédient, appareil ou ustensile)
+ * à la liste correspondante.
+ *
+ * @param {string} item - L'élément à supprimer.
+ * @param {string} type - Le type de l'élément (ex. "ingredient", "appliance", "ustensil").
+ */
+export function removeSelectedItem(item, type) {
+  const removeItemFromArray = (item, array) => {
+    const i = array.findIndex((arrayItem) => arrayItem === item);
+    if (i > -1) {
+      array.splice(i, 1);
+    }
+  };
+  switch (type) {
+    case "ingredient":
+      removeItemFromArray(item, selectedIngredients);
+      break;
+    case "appliance":
+      removeItemFromArray(item, selectedAppliances);
+      break;
+    case "ustensil":
+      removeItemFromArray(item, selectedUstensiles);
       break;
     default:
       console.error("error unknown type", item, type);
