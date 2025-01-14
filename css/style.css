@@ -494,6 +494,33 @@ main {
     height: 10px;
   }
   
-  .main__tag .main__remove-tag:hover {
+.main__tag .main__remove-tag:hover {
     color: #ff0000;
-  }
+}
+
+.main__remove-li {
+    margin-left: 10px;
+    color: #1B1B1B;
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+
+    /*
+    display: inline-block;        
+    background-color: #000000;   
+    color: #FFD700;              
+    font-weight: bold;          
+    font-size: 14px;             
+    width: 10px;                 
+    height: 10px;                
+    line-height: 20px;           
+    text-align: center;          
+    border-radius: 50%;          
+    cursor: pointer;             
+    transition: background-color 0.3s ease, color 0.3s ease;  */
+}
+
+/* .main__remove-li:hover {
+    background-color: #FFD700;   
+    color: #000000; 
+} */

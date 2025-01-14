@@ -1,6 +1,10 @@
 import { capitalizeFirstLetter } from "./utils.js";
-import { addSelectedItem } from "./store.js";
+import { 
+    addSelectedItem,
+    removeSelectedItem
+} from "./store.js";
 import {
+    displaySelectedIngredients,
     displayFilteredIngredients,
     displayFilteredAppliances,
     displayFilteredUstensiles
@@ -25,6 +29,27 @@ export function createModifiedListItem(text, type, isSelected) {
     const li = createListItem(text, type, isSelected);
     const newLi = li.cloneNode(true);
     newLi.className = li.className;
+    const removeIcon = document.createElement("span");
+    removeIcon.textContent = "✖";
+    removeIcon.classList.add("main__remove-li");
+    removeIcon.addEventListener("click", (event) => {
+      const target = event.target;
+      const type = target.closest("li").dataset.type;
+      //let item = target.closest(".main__tag").textContent;
+      //let item = target.closest("li.selected").textContent;
+      //item = item.replace("✖", "");
+      const item = text.toLowerCase();
+  
+      // modifier le store
+      removeSelectedItem(item, type);
+      //removeSelectedItem(text, type);
+      // rerender 3 dropdown et display tag
+      displayFilteredIngredients();
+      displayFilteredAppliances();
+      displayFilteredUstensiles();
+      displayTags();
+    });
+    newLi.appendChild(removeIcon);
     return newLi;
   }
   
