@@ -31,12 +31,12 @@ export function createModifiedListItem(text, type, isSelected) {
     const removeIcon = document.createElement("span");
     removeIcon.textContent = "✖";
     removeIcon.classList.add("main__remove-li");
-    removeIcon.addEventListener("click", (event) => removeSelectedItemAndRefresh(event));
+    removeIcon.addEventListener("click", () => removeSelectedItemAndRefresh(text, type));
     newLi.appendChild(removeIcon);
     return newLi;
 }
 
-function removeSelectedItemAndRefresh() {
+function removeSelectedItemAndRefresh(text, type) {
     //const target = event.target;
     //const text = target.closest("li.selected").textContent.replace("✖", "");
     //const type = target.closest("li").dataset.type;
