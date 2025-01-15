@@ -278,6 +278,8 @@ main {
 }
 .main__dropdownMenu-ul li.selected {
     background-color: #FFD15B;
+    display: flex;
+    justify-content: space-between;
 }
 
 
@@ -500,10 +502,18 @@ main {
 
 .main__remove-li {
     margin-left: 10px;
-    color: #1B1B1B;
+    /*color: #1B1B1B;*/
+    color: #FFD700;    
     cursor: pointer;
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #000000;
+    cursor: pointer;
+    line-height: 20px;
+    font-size: 10px;
+    text-align: center;
+    display: inline-block; 
 
     /*
     display: inline-block;        
