@@ -32,7 +32,11 @@ export function initDropdownIngredient(recipes) {
       allIngredients.add(ingredient.ingredient.toLowerCase());
     });
   });
-  setIngredientList(Array.from(allIngredients).sort());
+  //setIngredientList(Array.from(allIngredients).sort());
+  setIngredientList(Array.from(allIngredients).sort((a, b) => {
+    // Pour forcer le tri en français, vous pouvez spécifier 'fr'
+    return a.localeCompare(b, 'fr');
+  }));
   displayFilteredIngredients(getIngredientList());
 }
 
@@ -52,7 +56,11 @@ export function initDropdownAppliances(recipes) {
   recipes.forEach((recipe) => {
       allAppliances.add(recipe.appliance.toLowerCase());
   });  
-  setApplianceList(Array.from(allAppliances).sort());
+  //setApplianceList(Array.from(allAppliances).sort());
+  setApplianceList(Array.from(allAppliances).sort((a, b) => {
+    // Pour forcer le tri en français, vous pouvez spécifier 'fr'
+    return a.localeCompare(b, 'fr');
+  }));
   //displayFilteredAppliances(Array.from(allAppliances));
   displayFilteredAppliances(getApplianceList());
 }
@@ -75,7 +83,10 @@ export function initDropdownUstensiles(recipes) {
       allUstensiles.add(ustensil.toLowerCase());
     });
   });
-  setUstensilesList(Array.from(allUstensiles).sort());
+  //setUstensilesList(Array.from(allUstensiles).sort());
+  setUstensilesList(Array.from(allUstensiles).sort((a, b) => {
+    return a.localeCompare(b, 'fr');
+  }));
   //displayFilteredUstensiles(Array.from(allUstensiles));
   displayFilteredUstensiles(getUstensilesList());
 }

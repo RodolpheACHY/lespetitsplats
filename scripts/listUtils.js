@@ -4,7 +4,6 @@ import {
     removeSelectedItem
 } from "./store.js";
 import {
-    displaySelectedIngredients,
     displayFilteredIngredients,
     displayFilteredAppliances,
     displayFilteredUstensiles
@@ -32,26 +31,28 @@ export function createModifiedListItem(text, type, isSelected) {
     const removeIcon = document.createElement("span");
     removeIcon.textContent = "✖";
     removeIcon.classList.add("main__remove-li");
-    removeIcon.addEventListener("click", (event) => {
-      const target = event.target;
-      const type = target.closest("li").dataset.type;
-      //let item = target.closest(".main__tag").textContent;
-      //let item = target.closest("li.selected").textContent;
-      //item = item.replace("✖", "");
-      const item = text.toLowerCase();
-  
-      // modifier le store
-      removeSelectedItem(item, type);
-      //removeSelectedItem(text, type);
-      // rerender 3 dropdown et display tag
-      displayFilteredIngredients();
-      displayFilteredAppliances();
-      displayFilteredUstensiles();
-      displayTags();
-    });
+    removeIcon.addEventListener("click", (event) => removeSelectedItemAndRefresh(event));
     newLi.appendChild(removeIcon);
     return newLi;
-  }
+}
+
+function removeSelectedItemAndRefresh() {
+    //const target = event.target;
+    //const text = target.closest("li.selected").textContent.replace("✖", "");
+    //const type = target.closest("li").dataset.type;
+    const item = text.toLowerCase();
+  
+    // modifier le store
+    removeSelectedItem(item, type);
+
+    // rerender 3 dropdown et display tag
+    displayFilteredIngredients();
+    displayFilteredAppliances();
+    displayFilteredUstensiles();
+    displayTags();
+}
+   
+
   
  /**
  * Crée un élément de liste dynamique avec des fonctionnalités interactives.
