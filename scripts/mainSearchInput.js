@@ -1,4 +1,8 @@
 import { displayRecipes } from "./cards.js";
+import { initDropdownIngredient,
+         initDropdownAppliances,
+         initDropdownUstensiles
+ } from "./dropdownInit.js";
 
 /**
  * Gère la recherche de recettes en fonction de la saisie utilisateur.
@@ -22,6 +26,9 @@ export function handleSearch(recipes, query) {
         )
     );
     displayRecipes(filteredRecipes);
+    initDropdownIngredient(filteredRecipes);
+    initDropdownAppliances(filteredRecipes);
+    initDropdownUstensiles(filteredRecipes);
     // Vérifier et afficher le message
     displayNoResultsMessage(query, filteredRecipes, "no-results-message");
   } else {

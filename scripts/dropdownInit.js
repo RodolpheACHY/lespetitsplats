@@ -32,9 +32,7 @@ export function initDropdownIngredient(recipes) {
       allIngredients.add(ingredient.ingredient.toLowerCase());
     });
   });
-  //setIngredientList(Array.from(allIngredients).sort());
   setIngredientList(Array.from(allIngredients).sort((a, b) => {
-    // Pour forcer le tri en français, vous pouvez spécifier 'fr'
     return a.localeCompare(b, 'fr');
   }));
   displayFilteredIngredients(getIngredientList());
