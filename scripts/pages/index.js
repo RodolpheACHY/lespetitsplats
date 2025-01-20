@@ -96,7 +96,8 @@ function init() {
   clearInput("inputSearchUstensile", "iconXmarkInputUstensiles", recipes);
 
   const logo = document.getElementById("header__logo");
-  logo.addEventListener("click", displayFilteredrecipes);
+  //logo.addEventListener("click", displayFilteredrecipes);
+  logo.addEventListener("click", handleSearch);
 }
 
 //init();
