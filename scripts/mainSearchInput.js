@@ -60,7 +60,7 @@ export function clearInput(searchId, clearIconId, recipes) {
       searchInput.focus();
       
       // Obtenir les recettes filtrées avec une recherche vide (conserve les tags)
-      //const filteredRecipes = displayFilteredRecipes("");
+      const filteredRecipes = displayFilteredRecipes("");
       
       // Mise à jour de l'affichage
       //displayRecipes(filteredRecipes);

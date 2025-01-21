@@ -98,6 +98,8 @@ function init() {
   const logo = document.getElementById("header__logo");
   //logo.addEventListener("click", displayFilteredRecipes);
   logo.addEventListener("click", handleSearch);
+
+  document.addEventListener("filtersUpdated", () => handleSearch(recipes, searchInput.value));
 }
 
 //init();
