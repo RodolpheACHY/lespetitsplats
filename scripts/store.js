@@ -144,6 +144,7 @@ export function addSelectedItem(item, type) {
       console.error("error unknown type", item, type);
       break;
   }
+  document.dispatchEvent(new CustomEvent("filtersUpdated"));
 }
 
 /**
@@ -174,4 +175,5 @@ export function removeSelectedItem(item, type) {
       console.error("error unknown type", item, type);
       break;
   }
+  document.dispatchEvent(new CustomEvent("filtersUpdated"));
 }
