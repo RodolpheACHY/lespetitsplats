@@ -22,7 +22,7 @@ import {
  } from "../mainSearchInput.js";
 import { displayRecipes } from "../cards.js";
 import { displayTags } from "../tagSelected.js";
-import { displayFilteredrecipes } from "../mainSearchTag.js";
+import { displayFilteredRecipes } from "../mainSearchTag.js";
 
 
 /**
@@ -96,7 +96,7 @@ function init() {
   clearInput("inputSearchUstensile", "iconXmarkInputUstensiles", recipes);
 
   const logo = document.getElementById("header__logo");
-  //logo.addEventListener("click", displayFilteredrecipes);
+  //logo.addEventListener("click", displayFilteredRecipes);
   logo.addEventListener("click", handleSearch);
 }
 

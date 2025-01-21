@@ -3,7 +3,12 @@ import { initDropdownIngredient,
          initDropdownAppliances,
          initDropdownUstensiles
  } from "./dropdownInit.js";
-import { displayFilteredrecipes } from "./mainSearchTag.js";
+import { displayFilteredRecipes } from "./mainSearchTag.js";
+import {
+  getSelectedIngredients,
+  getSelectedAppliances,
+  getSelectedUstensiles,
+} from "./store.js";
 
 /**
  * Gère la recherche de recettes en fonction de la saisie utilisateur.
@@ -15,8 +20,14 @@ import { displayFilteredrecipes } from "./mainSearchTag.js";
  * @param {string} query - La saisie de l'utilisateur dans la barre de recherche.
  */
 export function handleSearch(recipes, query) {
+
+  // Récupérer les ingrédients, appareils et ustensiles sélectionnés 
+  const selectedIngredients = getSelectedIngredients();
+  const selectedAppliances = getSelectedAppliances();
+  const selectedUstensiles = getSelectedUstensiles();
+
   // Obtenir les recettes filtrées en tenant compte des tags et de la recherche
-  const filteredRecipes = displayFilteredrecipes(query);
+  const filteredRecipes = displayFilteredRecipes(query, selectedIngredients, selectedAppliances, selectedUstensiles);
 
   // Mise à jour de l'affichage des recettes
   displayRecipes(filteredRecipes);
@@ -49,10 +60,11 @@ export function clearInput(searchId, clearIconId, recipes) {
       searchInput.focus();
       
       // Obtenir les recettes filtrées avec une recherche vide (conserve les tags)
-      const filteredRecipes = displayFilteredrecipes("");
+      //const filteredRecipes = displayFilteredRecipes("");
       
       // Mise à jour de l'affichage
-      displayRecipes(filteredRecipes);
+      //displayRecipes(filteredRecipes);
+      document.dispatchEvent(new CustomEvent("filtersUpdated"));
       displayNoResultsMessage("", filteredRecipes, "no-results-message");
     });
 }

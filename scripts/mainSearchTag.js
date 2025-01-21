@@ -13,23 +13,23 @@ import {
  * @param {string} searchQuery - La saisie de l'utilisateur dans la barre de recherche principale
  * @return {Array} - un tableau contenant les recettes filtrées
  */
-export function displayFilteredrecipes(searchQuery = "") {
+export function displayFilteredRecipes(searchQuery = "", selectedIngredients = [], selectedAppliances = [], selectedUstensiles = []) {
     const recipes = getRecipes();
-    const selectedIngredients = getSelectedIngredients();
+    /* const selectedIngredients = getSelectedIngredients();
     const selectedAppliances = getSelectedAppliances();
-    const selectedUstensiles = getSelectedUstensiles();
+    const selectedUstensiles = getSelectedUstensiles(); */
     
-    // S'assurer que searchQuery est une chaîne de caractères
+    // On s'assure que searchQuery est bien une chaîne de caractères
     const trimmedQuery = (searchQuery || "").toString().trim().toLowerCase();
 
     const filteredRecipes = recipes.filter(recipe => {
         // Si aucun filtre n'est actif et la recherche est vide ou < 3 caractères
-        if (selectedIngredients.length === 0 && 
+        /* if (selectedIngredients.length === 0 && 
             selectedAppliances.length === 0 && 
             selectedUstensiles.length === 0 && 
             trimmedQuery.length < 3) {
             return true;
-        }
+        } */
 
         // Vérification des ingrédients sélectionnés
         const hasMatchingIngredients = selectedIngredients.length === 0 || 
