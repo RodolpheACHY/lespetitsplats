@@ -277,6 +277,10 @@ main {
     font-weight: bold;
 }
 
+/* Pour cacher complètement la scrollbar (sur les navigateurs Webkit comme Chrome) */
+.main__dropdownMenu-ul.show::-webkit-scrollbar {
+    display: none; /* Cela cache la scrollbar sur les navigateurs basés sur Webkit */
+}
 
 .main__containerInputDropdown {
     position: absolute;
