@@ -23,7 +23,7 @@ import {
 import { displayRecipes } from "../cards.js";
 import { displayTags } from "../tagSelected.js";
 import { displayFilteredRecipes } from "../mainSearchTag.js";
-
+import { sanitizeInput } from "../utils.js";
 
 /**
  * Fonction principale qui initialise toute l'application.
@@ -98,8 +98,14 @@ function init() {
   const logo = document.getElementById("header__logo");
   //logo.addEventListener("click", displayFilteredRecipes);
   logo.addEventListener("click", handleSearch);
-
   document.addEventListener("filtersUpdated", () => handleSearch(recipes, searchInput.value));
+
+  
+  searchInput.addEventListener("input", () => {
+    const sanatyzedInputValue = sanitizeInput(searchInput.value);
+    handleSearch(recipes, sanatyzedInputValue);
+  });
+
 }
 
 //init();
