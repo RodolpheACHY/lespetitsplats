@@ -47,8 +47,8 @@ export function handleSubmit(e) {
   export function sanitizeInput(input) {
     // Regex pour empêcher les attaques XSS 
     // const regex = /^[^&<>"=]+$/;
-    const regex = /[^a-zA-Z0-9 .,'\-]/g;
-    // const regex = /[^a-zA-ZÀ-ÿ0-9 .,'\-]/g;
+    //const regex = /[^a-zA-Z0-9 .,'\-]/g;
+    const regex = /[^a-zA-ZÀ-ÿ0-9 .,'\-]/g;
     if (regex.test(input)) {
       console.error("Tentative d'injection de caractère interdit détectée.");
       //return ""; // Ou une autre valeur par défaut
