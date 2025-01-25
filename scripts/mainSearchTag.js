@@ -68,12 +68,21 @@ export function displayFilteredRecipes(
   return filteredRecipes;
 }
 
+
+/**
+ * Vérifie si une recette correspond à une requête de recherche.
+ *
+ * @param {Object} recipe - L'objet recette à vérifier.
+ * @param {string} trimmedQuery - La requête de recherche trimée à vérifier.
+ * @returns {boolean} Renvoie vrai si la requête correspond à une partie du nom, 
+ *                    de la description ou des ingrédients de la recette, sinon faux.
+ */
 function matchesSearch(recipe, trimmedQuery) {
     if (trimmedQuery.length < 3) {
       return true;
     }
   
-    // Vérification du nom de la recette
+    // vérifie si le nom de la recette matche avec la requête
     for (let i = 0; i <= recipe.name.length - trimmedQuery.length; i++) {
       let match = true;
       for (let j = 0; j < trimmedQuery.length; j++) {
@@ -85,7 +94,7 @@ function matchesSearch(recipe, trimmedQuery) {
       if (match) return true;
     }
   
-    // Vérification de la description de la recette
+    // vérifie si quelque chose dans description de la recette matche avec la requête 
     for (let i = 0; i <= recipe.description.length - trimmedQuery.length; i++) {
       let match = true;
       for (let j = 0; j < trimmedQuery.length; j++) {
@@ -97,7 +106,7 @@ function matchesSearch(recipe, trimmedQuery) {
       if (match) return true;
     }
   
-    // Vérification des ingrédients
+    // vérifie si un des ingrédients de la recette matche avec la requête
     for (let i = 0; i < recipe.ingredients.length; i++) {
       let ingredient = recipe.ingredients[i].ingredient.toLowerCase();
       for (let k = 0; k <= ingredient.length - trimmedQuery.length; k++) {
