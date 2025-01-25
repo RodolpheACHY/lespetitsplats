@@ -49,9 +49,9 @@ export function handleSubmit(e) {
     // const regex = /^[^&<>"=]+$/;
     const regex = /[^a-zA-Z0-9 .,'\-]/g;
     // const regex = /[^a-zA-ZÀ-ÿ0-9 .,'\-]/g;
-    if (!regex.test(input)) {
+    if (regex.test(input)) {
       console.error("Tentative d'injection de caractère interdit détectée.");
-      return ""; // Ou une autre valeur par défaut
+      //return ""; // Ou une autre valeur par défaut
     }
     return input.replace(regex, '');
   }
