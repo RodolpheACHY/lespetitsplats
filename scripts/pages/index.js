@@ -22,7 +22,7 @@ import {
  } from "../mainSearchInput.js";
 import { displayRecipes } from "../cards.js";
 import { displayTags } from "../tagSelected.js";
-import { displayFilteredRecipes } from "../mainSearchTag.js";
+//import { displayFilteredRecipes } from "../mainSearchTag.js";
 import { sanitizeInput } from "../utils.js";
 
 /**
@@ -71,10 +71,18 @@ function init() {
   const searchInput = document.getElementById("header__search-container__input");
   
   // Recherche déclenchée à chaque saisie dans la barre principale
-  searchInput.addEventListener("input", () => handleSearch(recipes, searchInput.value));
+  // searchInput.addEventListener("input", () => handleSearch(recipes, searchInput.value));
+  searchInput.addEventListener("input", () => {
+  const sanatyzedInputValue = sanitizeInput(searchInput.value);
+    handleSearch(recipes, sanatyzedInputValue);
+  });
 
   // Recherche déclenchée au clic sur le bouton de recherche
-  searchButton.addEventListener("click", () => handleSearch(recipes, searchInput.value));
+  // searchButton.addEventListener("click", () => handleSearch(recipes, searchInput.value));
+  searchButton.addEventListener("click", () => {
+  const sanatyzedInputValue = sanitizeInput(searchInput.value);
+    handleSearch(recipes, sanatyzedInputValue);
+  });
 
   // affiche les recettes initiales
   displayRecipes(recipes);
@@ -99,12 +107,6 @@ function init() {
   //logo.addEventListener("click", displayFilteredRecipes);
   logo.addEventListener("click", handleSearch);
   document.addEventListener("filtersUpdated", () => handleSearch(recipes, searchInput.value));
-
-  
-  searchInput.addEventListener("input", () => {
-    const sanatyzedInputValue = sanitizeInput(searchInput.value);
-    handleSearch(recipes, sanatyzedInputValue);
-  });
 
 }
 
