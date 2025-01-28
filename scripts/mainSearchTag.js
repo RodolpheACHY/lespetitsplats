@@ -76,16 +76,24 @@ export function displayFilteredRecipes(
  *                    de la description ou des ingrédients de la recette, sinon faux.
  */
 function matchesSearch(recipe, trimmedQuery) {
-  if (trimmedQuery.length < 3) {
-    return true;
-  }
+  if (trimmedQuery.length < 3) return true;
+  
+    // Vérification du nom de la recette
+    if (recipe.name.toLowerCase().includes(trimmedQuery)) {
+      return true;
+    }
 
-  let match = false;
-  console.log('recipe', recipe, recipe.name, recipe.name.toLowerCase());
-  if (recipe.name.toLowerCase().includes(trimmedQuery.toLowerCase()) || recipe.description.toLowerCase().includes(trimmedQuery.toLowerCase())) {
-    // match
-    match = true;
-  } 
+    // Vérification de la description de la recette
+    if (recipe.description.toLowerCase().includes(trimmedQuery)) {
+      return true;
+    }
 
-  return match;
+    // Vérification des ingrédients de la recette
+    for (let i = 0; i < recipe.ingredients.length; i++) {
+      if (recipe.ingredients[i].ingredient.toLowerCase().includes(trimmedQuery)) {
+        return true;
+      }
+    }
+
+    return false;
 }
