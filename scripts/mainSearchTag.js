@@ -21,7 +21,11 @@ export function displayFilteredRecipes(
   // On s'assure que searchQuery est bien une chaîne de caractères
   const trimmedQuery = (searchQuery || "").toString().trim().toLowerCase();
 
-  const filteredRecipes = recipes.filter((recipe) => {
+  const filteredRecipes = [];
+  
+  for (let i = 0; i < recipes.length; i++) {
+  const recipe = recipes[i];
+
     // Vérification des ingrédients sélectionnés
     const hasMatchingIngredients =
       selectedIngredients.length === 0 ||
@@ -49,13 +53,15 @@ export function displayFilteredRecipes(
       );
 
     // La recette doit correspondre à TOUS les critères
-    return (
+    if (
       hasMatchingIngredients &&
       hasMatchingAppliance &&
       hasMatchingUstensils &&
       matchesSearch(recipe, trimmedQuery)
-    );
-  });
+    ) {
+      filteredRecipes.push(recipes)
+    }
+  }
 
   const t1 = performance.now();
   console.log(`Call to displayFilteredRecipes took ${
