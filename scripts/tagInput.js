@@ -49,7 +49,6 @@ export function displayFilteredAppliances(filteredAppliances = null) {
    appliancesList.innerHTML = "";
    displaySelectedAppliances(appliancesList);
    displayUnselectedAppliances(appliancesList, appliancesToDisplay);
-   //const appliances = getApplianceList();
  }
  
 /**

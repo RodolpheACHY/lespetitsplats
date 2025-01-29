@@ -37,9 +37,6 @@ export function createModifiedListItem(text, type, isSelected) {
 }
 
 function removeSelectedItemAndRefresh(text, type) {
-    //const target = event.target;
-    //const text = target.closest("li.selected").textContent.replace("✖", "");
-    //const type = target.closest("li").dataset.type;
     const item = text.toLowerCase();
   
     // modifier le store
@@ -88,12 +85,7 @@ function removeSelectedItemAndRefresh(text, type) {
       displayFilteredUstensiles();
       displayTags();
       toggleDropdown(li);
-      /*
-        mettre à jour les recettes
-      */
     });
-    //console.log("li", li, parentElement);
-    //parentElement.appendChild(li);
     return li;
   }
   

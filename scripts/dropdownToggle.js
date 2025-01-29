@@ -35,10 +35,8 @@ export function toggleDropdown(element) {
  *
  * Cette fonction cible directement les éléments liés au menu des ingrédients (menu, bouton, 
  * et container) et bascule leurs classes "show" pour afficher ou masquer l'ensemble.
- *
- * @param {Array} recipes - Tableau contenant toutes les recettes, si nécessaire pour d'autres actions.
  */
-export function toggleIngredientsList(recipes) {
+export function toggleIngredientsList() {
   const dropdownMenu = document.getElementById("dropdownMenuIngredients");
   const containerInputDropdownIngredients = document.getElementById(
     "containerInputDropdownIngredients"

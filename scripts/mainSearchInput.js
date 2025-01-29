@@ -15,11 +15,9 @@ import {
  * 
  * Cette fonction utilise la saisie utilisateur pour filtrer les recettes
  * en combinaison avec les tags sélectionnés, puis met à jour l'affichage.
- * 
- * @param {Array} recipes - Tableau contenant toutes les recettes.
  * @param {string} query - La saisie de l'utilisateur dans la barre de recherche.
  */
-export function handleSearch(recipes, query) {
+export function handleSearch(query) {
 
   // Récupérer les ingrédients, appareils et ustensiles sélectionnés 
   const selectedIngredients = getSelectedIngredients();
@@ -49,9 +47,8 @@ export function handleSearch(recipes, query) {
  * 
  * @param {string} searchId - L'ID de l'élément input à vider.
  * @param {string} clearIconId - L'ID de l'icône croix pour réinitialiser la recherche.
- * @param {Array} recipes - Tableau contenant toutes les recettes.
  */
-export function clearInput(searchId, clearIconId, recipes) {
+export function clearInput(searchId, clearIconId) {
     const searchInput = document.getElementById(searchId);
     const clearIcon = document.getElementById(clearIconId);
     
@@ -63,7 +60,6 @@ export function clearInput(searchId, clearIconId, recipes) {
       const filteredRecipes = displayFilteredRecipes("");
       
       // Mise à jour de l'affichage
-      //displayRecipes(filteredRecipes);
       document.dispatchEvent(new CustomEvent("filtersUpdated"));
       displayNoResultsMessage("", filteredRecipes, "no-results-message");
     });

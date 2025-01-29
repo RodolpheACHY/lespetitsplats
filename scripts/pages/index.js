@@ -26,12 +26,12 @@ import { displayTags } from "../tagSelected.js";
 import { sanitizeInput } from "../utils.js";
 
 /**
- * Fonction principale qui initialise toute l'application.
+ * Fonction principale qui initialise l'application.
  * 
  * Cette fonction configure :
  * - Les événements de clic et d'entrée pour les menus déroulants.
- * - La gestion de la recherche (barre de recherche principale et menus).
- * - L'affichage des recettes et des tags.
+ * - La gestion de la recherche (barre de recherche principale et menus déroulants).
+ * - L'affichage initilal des recettes, des filtres, et des des tags.
  */
 function init() {
   // Gère l'affichage des listes au clic sur les boutons dropdown
@@ -71,14 +71,12 @@ function init() {
   const searchInput = document.getElementById("header__search-container__input");
   
   // Recherche déclenchée à chaque saisie dans la barre principale
-  // searchInput.addEventListener("input", () => handleSearch(recipes, searchInput.value));
   searchInput.addEventListener("input", () => {
   const sanatyzedInputValue = sanitizeInput(searchInput.value);
     handleSearch(recipes, sanatyzedInputValue);
   });
 
   // Recherche déclenchée au clic sur le bouton de recherche
-  // searchButton.addEventListener("click", () => handleSearch(recipes, searchInput.value));
   searchButton.addEventListener("click", () => {
   const sanatyzedInputValue = sanitizeInput(searchInput.value);
     handleSearch(recipes, sanatyzedInputValue);
@@ -95,8 +93,6 @@ function init() {
   //affichage des tags sélectionnés
   displayTags();
 
-  // handleSearchListIngredients();
-
   // clear inputs
   clearInput("header__search-container__input", "input-xmark-icon", recipes);
   clearInput("inputSearchIngredient", "iconXmarkInputIngredients", recipes);
@@ -104,11 +100,9 @@ function init() {
   clearInput("inputSearchUstensile", "iconXmarkInputUstensiles", recipes);
 
   const logo = document.getElementById("header__logo");
-  //logo.addEventListener("click", displayFilteredRecipes);
   logo.addEventListener("click", handleSearch);
   document.addEventListener("filtersUpdated", () => handleSearch(recipes, searchInput.value));
 
 }
 
-//init();
 document.addEventListener("DOMContentLoaded", init);
