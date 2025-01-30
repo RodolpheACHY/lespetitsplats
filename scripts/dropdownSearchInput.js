@@ -22,8 +22,8 @@ import {
  *
  * @param {Event} event - L'événement déclenché lors de la saisie dans l'input.
  */
-export function handleSearchListIngredients(event) {
-  //event.preventDefault();
+  export function handleSearchListIngredients(event) {
+  event.preventDefault();
 
   const searchInputListIngredients = document.getElementById(
     "inputSearchIngredient"
