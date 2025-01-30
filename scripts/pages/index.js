@@ -72,13 +72,13 @@ function init() {
   // Recherche déclenchée à chaque saisie dans la barre de recherche principale
   searchInput.addEventListener("input", () => {
     const sanatyzedInputValue = sanitizeInput(searchInput.value);
-    handleSearch(recipes, sanatyzedInputValue);
+    handleSearch(sanatyzedInputValue);
   });
 
   // Recherche déclenchée au clic sur le bouton de recherche
   searchButton.addEventListener("click", () => {
     const sanatyzedInputValue = sanitizeInput(searchInput.value);
-    handleSearch(recipes, sanatyzedInputValue);
+    handleSearch(sanatyzedInputValue);
   });
   
   // Affichage initial des recettes
@@ -99,7 +99,7 @@ function init() {
   clearInput("inputSearchUstensile", "iconXmarkInputUstensiles", recipes);
 
   // Recherche déclenchée lorsqu'un événement personnalisé "filtersUpdated" est émis
-  document.addEventListener("filtersUpdated", () => handleSearch(recipes, searchInput.value));
+  document.addEventListener("filtersUpdated", () => handleSearch( searchInput.value));
 }
 
 // Initialise l'application une fois le DOM chargé
