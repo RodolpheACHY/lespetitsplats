@@ -1,10 +1,10 @@
-// Tableau contenant tous les ingédients
+// Tableau contenant tous les ingédients disponibles
 let ingredientsList = [];
 
-// Tableau contenant tous les appareils
+// Tableau contenant tous les appareils disponibles
 let appliancesList = [];
 
-// Tableau contenant tous les ustensiles
+// Tableau contenant tous les ustensiles disponibles
 let ustensilesList = [];
 
 // tableaux contenant les éléments sélectionnés pour la recherhe
@@ -15,7 +15,7 @@ const selectedUstensiles = [];
 /**
  * Met à jour la liste générale des ingrédients.
  *
- * @param {Array} list - Tableau contenant tous les ingrédients.
+ * @param {Array} list - Tableau contenant les nouveaux ingrédients disponibles
  */
 export function setIngredientList(list) {
   console.log("ingredients list", list);
@@ -34,7 +34,7 @@ export function getIngredientList() {
 /**
  * Met à jour la liste des ingrédients sélectionnés pour la recherche.
  *
- * @param {Array} list - Tableau contenant les ingrédients sélectionnés.
+ * @param {Array} list - Tableau contenant les nouveaux ingrédients sélectionnés.
  */
 export function setSelectedIngredients(list) {
   selectedIngredients = list;
@@ -60,9 +60,9 @@ export function getApplianceList() {
 }
 
 /**
- * Met à jour la liste générale des appareils.
+ * Met à jour la liste générale des appareils disponibles
  *
- * @param {Array} list - Tableau contenant tous les appareils.
+ * @param {Array} list - La liste actuelle des appareils disponibles.
  */
 export function setApplianceList(list) {
   appliancesList = list;
@@ -124,7 +124,7 @@ export function getSelectedUstensiles() {
 
 /**
  * Ajoute un élément sélectionné (ingrédient, appareil ou ustensile)
- * à la liste correspondante.
+ * à la liste correspondante et déclenche l'événement "filtersUpdated".
  *
  * @param {string} item - L'élément à ajouter.
  * @param {string} type - Le type de l'élément (ex. "ingredient", "appliance", "ustensil").
@@ -144,6 +144,7 @@ export function addSelectedItem(item, type) {
       console.error("error unknown type", item, type);
       break;
   }
+  // Déclenche un événement personnalisé pour mettre à jour les filtres
   document.dispatchEvent(new CustomEvent("filtersUpdated"));
 }
 
@@ -175,5 +176,6 @@ export function removeSelectedItem(item, type) {
       console.error("error unknown type", item, type);
       break;
   }
+  // Déclenche un événement personnalisé pour mettre à jour les filtres
   document.dispatchEvent(new CustomEvent("filtersUpdated"));
 }
