@@ -22,7 +22,6 @@ import {
  } from "../mainSearchInput.js";
 import { displayRecipes } from "../cards.js";
 import { displayTags } from "../tagSelected.js";
-//import { displayFilteredRecipes } from "../mainSearchTag.js";
 import { sanitizeInput } from "../utils.js";
 
 /**
@@ -61,7 +60,7 @@ function init() {
   // Récupère les datas des recettes
   const recipes = getRecipes();
 
-  //empèche les datas des recettes
+  // Empèche les datas des recettes
   const form = document.getElementById("header__search-container__form");
   form.addEventListener('submit', handleSubmit);
 
@@ -73,36 +72,35 @@ function init() {
   // Recherche déclenchée à chaque saisie dans la barre principale
   searchInput.addEventListener("input", () => {
   const sanatyzedInputValue = sanitizeInput(searchInput.value);
-    handleSearch(recipes, sanatyzedInputValue);
+    handleSearch(sanatyzedInputValue);
   });
 
   // Recherche déclenchée au clic sur le bouton de recherche
   searchButton.addEventListener("click", () => {
   const sanatyzedInputValue = sanitizeInput(searchInput.value);
-    handleSearch(recipes, sanatyzedInputValue);
+    handleSearch(sanatyzedInputValue);
   });
 
-  // affiche les recettes initiales
+  // Affichage initial des recettes
   displayRecipes(recipes);
 
-  // affichage initial des listes des dropdowns
+  // Affichage initial des listes des dropdowns
   initDropdownIngredient(recipes);
   initDropdownAppliances(recipes);
   initDropdownUstensiles(recipes);
   
-  //affichage des tags sélectionnés
+  // Affichage des tags sélectionnés
   displayTags();
 
-  // clear inputs
+  // Effacement des champs de saisie (barre principale et dropdowns)
   clearInput("header__search-container__input", "input-xmark-icon", recipes);
   clearInput("inputSearchIngredient", "iconXmarkInputIngredients", recipes);
   clearInput("inputSearchDevice", "iconXmarkInputDevices", recipes);
   clearInput("inputSearchUstensile", "iconXmarkInputUstensiles", recipes);
 
-  const logo = document.getElementById("header__logo");
-  logo.addEventListener("click", handleSearch);
-  document.addEventListener("filtersUpdated", () => handleSearch(recipes, searchInput.value));
-
+  // Recherche déclenchée lorsqu'un événement personnalisé "filtersUpdated" est émis
+  document.addEventListener("filtersUpdated", () => handleSearch(searchInput.value));
 }
 
+// Initialise l'application une fois le DOM chargé
 document.addEventListener("DOMContentLoaded", init);
