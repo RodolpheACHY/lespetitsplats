@@ -1,17 +1,19 @@
 import { getRecipes } from "./models/index.js";
-import {
-    getSelectedIngredients,
-    getSelectedAppliances,
-    getSelectedUstensiles,
-} from "./store.js";
 
 /**
  * Gère la recherche de recettes en fonction des tags sélectionnés et de la saisie utilisateur.
  * 
- * Cette fonction filtre les recettes en fonction des tags sélectionnés dans le dropdown
- * et de la recherche principale, puis met à jour l'affichage.
- * @param {string} searchQuery - La saisie de l'utilisateur dans la barre de recherche principale
- * @return {Array} - un tableau contenant les recettes filtrées
+ * Cette fonction filtre les recettes selon :
+ * - Les ingrédients sélectionnés.
+ * - Les appareils sélectionnés.
+ * - Les ustensiles sélectionnés.
+ * - Une recherche textuelle saisie par l'utilisateur.
+ *
+ * @param {string} searchQuery - La saisie de l'utilisateur dans la barre de recherche principale.
+ * @param {Array} selectedIngredients - Liste des ingrédients sélectionnés.
+ * @param {Array} selectedAppliances - Liste des appareils sélectionnés.
+ * @param {Array} selectedUstensiles - Liste des ustensiles sélectionnés.
+ * @returns {Array} - Un tableau contenant les recettes filtrées.
  */
 export function displayFilteredRecipes(
   searchQuery = "",
@@ -19,26 +21,17 @@ export function displayFilteredRecipes(
   selectedAppliances = [],
   selectedUstensiles = []
 ) {
-  const t0 = performance.now();
 
+    // Récupération de la liste complète des recettes  
     const recipes = getRecipes();
-    /* const selectedIngredients = getSelectedIngredients();
-    const selectedAppliances = getSelectedAppliances();
-    const selectedUstensiles = getSelectedUstensiles(); */
-    
-    // On s'assure que searchQuery est bien une chaîne de caractères
+   
+    // Nettoie la saisie utilisateur : conversion en string, suppression des espaces et conversion en minuscules
     const trimmedQuery = (searchQuery || "").toString().trim().toLowerCase();
 
-  const filteredRecipes = recipes.filter((recipe) => {
-        // Si aucun filtre n'est actif et la recherche est vide ou < 3 caractères
-        /* if (selectedIngredients.length === 0 && 
-            selectedAppliances.length === 0 && 
-            selectedUstensiles.length === 0 && 
-            trimmedQuery.length < 3) {
-            return true;
-        } */
-
-        // Vérification des ingrédients sélectionnés
+    // Filtrage des recettes selon les critères de recherche
+    const filteredRecipes = recipes.filter((recipe) => {
+      
+    // Vérifie si tous les ingrédients sélectionnés sont présents dans la recette
     const hasMatchingIngredients =
       selectedIngredients.length === 0 ||
       selectedIngredients.every((selectedIngredient) =>
@@ -49,12 +42,12 @@ export function displayFilteredRecipes(
                 )
             );
 
-        // Vérification des appareils sélectionnés
+    // Vérifie si les appareils sélectionnés sont ceux utilisés dans la recette
     const hasMatchingAppliance =
       selectedAppliances.length === 0 ||
             selectedAppliances.includes(recipe.appliance.toLowerCase());
 
-        // Vérification des ustensiles sélectionnés
+    // Vérifie si tous les ustensiles sélectionnés sont présents dans la recette
     const hasMatchingUstensils =
       selectedUstensiles.length === 0 ||
       selectedUstensiles.every((selectedUstensil) =>
@@ -64,16 +57,16 @@ export function displayFilteredRecipes(
                 )
             );
 
-        // Vérification de la recherche principale (si plus de 3 caractères)
+     // Vérifie si la recherche textuelle correspond au nom, à la description ou aux ingrédients
     const matchesSearch =
-      trimmedQuery.length < 3 ||
+      trimmedQuery.length < 3 ||  // Recherche ignorée si moins de 3 caractères
             recipe.name.toLowerCase().includes(trimmedQuery) ||
             recipe.description.toLowerCase().includes(trimmedQuery) ||
       recipe.ingredients.some((ingredient) =>
                 ingredient.ingredient.toLowerCase().includes(trimmedQuery)
         );
 
-        // La recette doit correspondre à TOUS les critères
+        // La recette doit correspondre à TOUS les critères pour être incluse
     return (
       hasMatchingIngredients &&
                hasMatchingAppliance && 
@@ -82,12 +75,6 @@ export function displayFilteredRecipes(
     );
     });
 
-  const t1 = performance.now();
-  console.log(`Call to displayFilteredRecipes took ${
-    t1 - t0
-  } milliseconds for ${searchQuery}
-  ${selectedIngredients}
-  ${selectedAppliances}
-  ${selectedUstensiles}`);
+    // Retourne la liste des recettes filtrées
     return filteredRecipes;
 }
