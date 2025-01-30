@@ -37,15 +37,32 @@ export function handleSubmit(e) {
   e.preventDefault();
 }
 
-// Fonction pour récupérer et nettoyer la valeur
+/**
+* Nettoie une chaîne de texte saisie par l'utilisateur afin d'empêcher
+* l'injection de caractères non autorisés (protection contre certaines attaques XSS).
+*
+* Cette fonction :
+* - Supprime les caractères spéciaux potentiellement dangereux pour le DOM.
+* - Conserve uniquement les lettres, chiffres, espaces, accents et certains symboles autorisés.
+* - Affiche une alerte dans la console si des caractères non autorisés sont détectés.
+*
+* @param {string} input - La chaîne de texte saisie par l'utilisateur.
+* @returns {string} - La chaîne nettoyée, sans caractères interdits.
+*
+* @example
+* sanitizeInput("Bonjour<script>alert('XSS');</script>");
+* // Retourne : "Bonjour"
+*/
 export function sanitizeInput(input) {
-  // Regex pour empêcher les attaques XSS 
-  // const regex = /^[^&<>"=]+$/;
-  // const regex = /[^a-zA-Z0-9 .,'\-]/g;
-  const regex = /[^a-zA-ZÀ-ÿ0-9 .,'\-]/g;
-  if (regex.test(input)) {
-    console.error("Tentative d'injection de caractère interdit détectée.");
-    //return ""; // Ou une autre valeur par défaut
-  }
-  return input.replace(regex, '');
+ // Expression régulière pour autoriser uniquement :
+ // Lettres (a-z, A-Z), chiffres (0-9), espaces, accents, apostrophes, tirets, points et virgules
+ const regex = /[^a-zA-ZÀ-ÿ0-9 .,'\-]/g;
+
+ // Si des caractères non autorisés sont trouvés, affiche une alerte dans la console
+ if (regex.test(input)) {
+   console.error("Tentative d'injection de caractère interdit détectée.");
+ }
+
+ // Retourne la chaîne nettoyée sans les caractères interdits
+ return input.replace(regex, '');
 }
