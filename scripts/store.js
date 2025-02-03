@@ -18,7 +18,6 @@ const selectedUstensiles = [];
  * @param {Array} list - Tableau contenant tous les ingrédients.
  */
 export function setIngredientList(list) {
-  console.log("ingredients list", list);
   ingredientsList = list;
 }
 
@@ -46,7 +45,6 @@ export function setSelectedIngredients(list) {
  * @returns {Array} - La liste des ingrédients actuellement sélectionnés.
  */
 export function getSelectedIngredients() {
-  //console.log("getSelectedIngredients", selectedIngredients);
   return selectedIngredients;
 }
 
