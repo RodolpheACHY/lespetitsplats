@@ -18,7 +18,6 @@ const selectedUstensiles = [];
  * @param {Array} list - Tableau contenant les nouveaux ingrédients disponibles
  */
 export function setIngredientList(list) {
-  console.log("ingredients list", list);
   ingredientsList = list;
 }
 
