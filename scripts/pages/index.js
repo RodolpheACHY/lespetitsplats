@@ -60,7 +60,7 @@ function init() {
   // Récupère les datas des recettes
   const recipes = getRecipes();
 
-  // Empèche les datas des recettes
+  // Empêche le rechargement de la page lors de la soumission du formulaire de recherche
   const form = document.getElementById("header__search-container__form");
   form.addEventListener('submit', handleSubmit);
 
