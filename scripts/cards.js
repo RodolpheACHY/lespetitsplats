@@ -53,7 +53,6 @@ export function displayRecipes(recipes) {
             </div>`;
     cardContainer.insertAdjacentHTML("beforeend", html);
   });
-  console.log(recipes.length);
   countRecipes(recipes);
 }
 
