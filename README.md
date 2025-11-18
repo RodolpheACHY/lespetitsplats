@@ -28,6 +28,7 @@ Les Petits Plats est un projet démarré from sratch où j'ai développé un alg
 
 ## 📂 Arborescence du projet
 
+```
 /
 │── index.html
 │── assets/
@@ -52,6 +53,7 @@ Les Petits Plats est un projet démarré from sratch où j'ai développé un alg
 │── data/
 │    └── recipes.json
 └── README.md
+```
 
 ---
 
