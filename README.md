@@ -65,11 +65,12 @@ Les Petits Plats est un projet démarré from sratch où j'ai développé un alg
 
 ## 🔧 Installation
 
+```
 git clone https://github.com/RodolpheACHY/lespetitsplats.git
 cd les-petits-plats
 
 Ouvre index.html dans un navigateur
-
+```
 ---
 
 ## 🤝 Contact
