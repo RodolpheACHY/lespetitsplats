@@ -59,7 +59,8 @@ Les Petits Plats est un projet démarré from sratch où j'ai développé un alg
 
 ## 📸 Aperçu
 
-*(Ajoute ici une capture d’écran, un GIF, ou un lien vers ta démo)*
+<img width="1866" height="942" alt="image" src="https://github.com/user-attachments/assets/12c6d5e2-b3f2-40e4-ae84-a4c0eee27944" />
+
 
 ---
 
