@@ -14,7 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%), url(assets/lampos-aritonang-24gR_9lCdes-unsplash_1.png) lightgray 50% / cover no-repeat;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%), url(../assets/lampos-aritonang-24gR_9lCdes-unsplash_1.png) lightgray 50% / cover no-repeat;
 }
 
 #header__logo {
